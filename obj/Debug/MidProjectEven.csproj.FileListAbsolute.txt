@@ -1,0 +1,13 @@
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\bin\Debug\MidProjectEven.exe.config
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\bin\Debug\MidProjectEven.exe
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\bin\Debug\MidProjectEven.pdb
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\bin\Debug\Guna.UI2.dll
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.csproj.AssemblyReference.cache
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.Properties.Resources.resources
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.csproj.GenerateResource.cache
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.csproj.CoreCompileInputs.cache
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.csproj.CopyComplete
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.exe
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.pdb
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.main_form.resources
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.Student_control.resources
