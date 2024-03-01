@@ -330,9 +330,10 @@
             // 
             // main_panel
             // 
-            this.main_panel.BackColor = System.Drawing.Color.Transparent;
+            this.main_panel.BackColor = System.Drawing.Color.White;
             this.main_panel.Controls.Add(this.guna2Button2);
             this.main_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.main_panel.ForeColor = System.Drawing.Color.Black;
             this.main_panel.Location = new System.Drawing.Point(213, 0);
             this.main_panel.Name = "main_panel";
             this.main_panel.Size = new System.Drawing.Size(969, 671);

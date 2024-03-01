@@ -42,18 +42,14 @@ namespace MidProjectEven
 
         private void Students_btn_Click(object sender, EventArgs e)
         {
-            btn_home.Checked = false;
-            Students_btn.Checked = true;
+      
             Student_control student_Control = new Student_control();
             addusercontrol(student_Control);
-
-
 
         }
         private void addusercontrol(UserControl control)
         {
-          
-            control.Dock= DockStyle.Fill;
+            control.Dock = DockStyle.Fill;
             main_panel.Controls.Add(control);
             control.BringToFront();
         }
@@ -65,7 +61,12 @@ namespace MidProjectEven
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult result = MessageBox.Show("Do you want to Close Application", "Confirm Close", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            { 
+                Application.Exit();
+            }
+         
         }
     }
   
