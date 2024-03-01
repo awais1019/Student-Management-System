@@ -61,6 +61,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Home_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Home_UserControl.Designer.cs">
+      <DependentUpon>Home_UserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Student_control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -80,6 +86,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\Home_UserControl.resx">
+      <DependentUpon>Home_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Student_control.resx">
       <DependentUpon>Student_control.cs</DependentUpon>
     </EmbeddedResource>

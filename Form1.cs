@@ -31,13 +31,16 @@ namespace MidProjectEven
 
         private void main_form_Load(object sender, EventArgs e)
         {
-      
+            Home_UserControl home_UserControl = new Home_UserControl();
+            addusercontrol(home_UserControl);
+
         }
 
 
         private void btn_home_Click(object sender, EventArgs e)
         {
-
+            Home_UserControl home_UserControl = new Home_UserControl();
+            addusercontrol(home_UserControl);
         }
 
         private void Students_btn_Click(object sender, EventArgs e)
@@ -67,6 +70,16 @@ namespace MidProjectEven
                 Application.Exit();
             }
          
+        }
+        private void moveImageBox(object sender)
+        {
+            Guna2Button b = (Guna2Button)sender;
+            sidepicture.Location = new Point(b.Location.X + 118, b.Location.Y - 30);
+            sidepicture.SendToBack();
+        }
+        private void btn_home_CheckedChanged(object sender, EventArgs e)
+        {
+            moveImageBox(sender);
         }
     }
   

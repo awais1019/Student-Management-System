@@ -37,7 +37,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(285, 50);
+            this.label2.Location = new System.Drawing.Point(360, 316);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(323, 38);
             this.label2.TabIndex = 1;
@@ -75,12 +75,13 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.guna2Button2);
             this.Controls.Add(this.guna2Button1);
-            this.Controls.Add(this.label2);
             this.ForeColor = System.Drawing.Color.Black;
+            this.Margin = new System.Windows.Forms.Padding(0, 6, 6, 6);
             this.Name = "Student_control";
-            this.Size = new System.Drawing.Size(969, 671);
+            this.Size = new System.Drawing.Size(1002, 671);
             this.ResumeLayout(false);
             this.PerformLayout();
 
