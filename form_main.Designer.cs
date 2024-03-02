@@ -48,6 +48,8 @@
             this.label_header_main = new System.Windows.Forms.Label();
             this.close_btn = new Guna.UI2.WinForms.Guna2Button();
             this.main_panel = new System.Windows.Forms.Panel();
+            this.maximize_btn = new Guna.UI2.WinForms.Guna2Button();
+            this.minimize_btn = new Guna.UI2.WinForms.Guna2Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sidepicture)).BeginInit();
             this.guna2Panel1.SuspendLayout();
@@ -339,6 +341,8 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.minimize_btn);
+            this.panel4.Controls.Add(this.maximize_btn);
             this.panel4.Controls.Add(this.label_header_main);
             this.panel4.Controls.Add(this.close_btn);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
@@ -391,6 +395,52 @@
             this.main_panel.Size = new System.Drawing.Size(834, 602);
             this.main_panel.TabIndex = 4;
             // 
+            // maximize_btn
+            // 
+            this.maximize_btn.BackColor = System.Drawing.Color.Transparent;
+            this.maximize_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.maximize_btn.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.maximize_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.maximize_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.maximize_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.maximize_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.maximize_btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.maximize_btn.FillColor = System.Drawing.Color.Transparent;
+            this.maximize_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.maximize_btn.ForeColor = System.Drawing.Color.White;
+            this.maximize_btn.HoverState.FillColor = System.Drawing.Color.Red;
+            this.maximize_btn.Image = ((System.Drawing.Image)(resources.GetObject("maximize_btn.Image")));
+            this.maximize_btn.ImageSize = new System.Drawing.Size(15, 15);
+            this.maximize_btn.Location = new System.Drawing.Point(724, 0);
+            this.maximize_btn.Name = "maximize_btn";
+            this.maximize_btn.Size = new System.Drawing.Size(55, 46);
+            this.maximize_btn.TabIndex = 3;
+            this.maximize_btn.UseTransparentBackground = true;
+            this.maximize_btn.Click += new System.EventHandler(this.maximize_btn_Click);
+            // 
+            // minimize_btn
+            // 
+            this.minimize_btn.BackColor = System.Drawing.Color.Transparent;
+            this.minimize_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.minimize_btn.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.minimize_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.minimize_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.minimize_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.minimize_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.minimize_btn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.minimize_btn.FillColor = System.Drawing.Color.Transparent;
+            this.minimize_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.minimize_btn.ForeColor = System.Drawing.Color.White;
+            this.minimize_btn.HoverState.FillColor = System.Drawing.Color.Red;
+            this.minimize_btn.Image = ((System.Drawing.Image)(resources.GetObject("minimize_btn.Image")));
+            this.minimize_btn.ImageSize = new System.Drawing.Size(12, 12);
+            this.minimize_btn.Location = new System.Drawing.Point(669, 0);
+            this.minimize_btn.Name = "minimize_btn";
+            this.minimize_btn.Size = new System.Drawing.Size(55, 46);
+            this.minimize_btn.TabIndex = 4;
+            this.minimize_btn.UseTransparentBackground = true;
+            this.minimize_btn.Click += new System.EventHandler(this.minimize_btn_Click);
+            // 
             // main_form
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -437,6 +487,8 @@
         private System.Windows.Forms.PictureBox sidepicture;
         private System.Windows.Forms.Panel main_panel;
         private System.Windows.Forms.Label label_header_main;
+        private Guna.UI2.WinForms.Guna2Button maximize_btn;
+        private Guna.UI2.WinForms.Guna2Button minimize_btn;
     }
 }
 

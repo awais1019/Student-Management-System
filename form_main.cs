@@ -81,6 +81,25 @@ namespace MidProjectEven
         {
             moveImageBox(sender);
         }
+
+        private void maximize_btn_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+              
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+         
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void minimize_btn_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
   
 }

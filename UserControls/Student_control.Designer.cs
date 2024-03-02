@@ -47,11 +47,12 @@
             // 
             // flowLayoutPanel
             // 
+            this.flowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel.AutoScroll = true;
             this.flowLayoutPanel.AutoScrollMargin = new System.Drawing.Size(20, 20);
             this.flowLayoutPanel.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel.Location = new System.Drawing.Point(0, 56);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Size = new System.Drawing.Size(834, 521);
@@ -74,7 +75,6 @@
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 4, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -90,7 +90,7 @@
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(594, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 59);
+            this.label6.Size = new System.Drawing.Size(109, 53);
             this.label6.TabIndex = 5;
             this.label6.Text = "Status";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -103,7 +103,7 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(479, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 59);
+            this.label5.Size = new System.Drawing.Size(109, 53);
             this.label5.TabIndex = 5;
             this.label5.Text = "Contact";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,7 +116,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(19, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 59);
+            this.label1.Size = new System.Drawing.Size(109, 53);
             this.label1.TabIndex = 4;
             this.label1.Text = "First Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -129,7 +129,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(134, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 59);
+            this.label2.Size = new System.Drawing.Size(109, 53);
             this.label2.TabIndex = 5;
             this.label2.Text = "Last Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -142,7 +142,7 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(249, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 59);
+            this.label3.Size = new System.Drawing.Size(109, 53);
             this.label3.TabIndex = 6;
             this.label3.Text = "Email";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -155,16 +155,18 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(364, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 59);
+            this.label4.Size = new System.Drawing.Size(109, 53);
             this.label4.TabIndex = 7;
             this.label4.Text = "Registration Number";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(57)))), ((int)(((byte)(57)))));
             this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel1);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(834, 56);
@@ -193,9 +195,11 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.count_students_label);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 577);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(834, 25);
