@@ -61,6 +61,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Add_Student_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Add_Student_Control.Designer.cs">
+      <DependentUpon>Add_Student_Control.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Student_Information_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +98,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\Add_Student_Control.resx">
+      <DependentUpon>Add_Student_Control.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Student_Information_card.resx">
       <DependentUpon>Student_Information_card.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +140,7 @@
     <None Include="Resources\reading-book.png" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Configuration.cs" />
     <Content Include="Resources\icons8-assessment-50 %281%29.png" />
     <Content Include="Resources\icons8-assessment-50.png" />
     <Content Include="Resources\icons8-home-50 %281%29.png" />

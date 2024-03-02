@@ -25,12 +25,16 @@ namespace MidProjectEven.UserControls
         int n = 100;
         void display()
         {
-            for(int i = 0; i < n; i++)
+            flowLayoutPanel.Controls.Clear();
+            for (int i = 0; i < n; i++)
             {
 
                 Student_infromation_card hello = new Student_infromation_card();
+              
                 flowLayoutPanel.Controls.Add(hello);
-             
+                flowLayoutPanel.ResumeLayout();
+
+
             }
             count_students_label.Text = n.ToString();
          
@@ -53,6 +57,18 @@ namespace MidProjectEven.UserControls
 
         private void count_students_label_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void Add_student_btn_Click(object sender, EventArgs e)
+        {
+            Full_panel.Controls.Clear();
+            Full_panel.Controls.Add(new Add_Student_Control());
+        }
+
+        private void Searchbox_TextChanged(object sender, EventArgs e)
+        {
+
 
         }
     }

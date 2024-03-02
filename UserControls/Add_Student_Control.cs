@@ -10,22 +10,11 @@ using System.Windows.Forms;
 
 namespace MidProjectEven.UserControls
 {
-    public partial class Student_infromation_card : UserControl
+    public partial class Add_Student_Control : UserControl
     {
-        public Student_infromation_card()
+        public Add_Student_Control()
         {
             InitializeComponent();
-
-
-        }
-
-     
-
-  
-
-        private void FirstName_lable_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
