@@ -20,7 +20,14 @@ namespace MidProjectEven
         public main_form()
         {
             InitializeComponent();
+           
+        }
+        public void setMenu(Control control, string header_name)
+        {
 
+            main_panel.Controls.Clear();
+            label_header_main.Text = header_name;
+            main_panel.Controls.Add(control);
         }
  
 
@@ -31,30 +38,23 @@ namespace MidProjectEven
 
         private void main_form_Load(object sender, EventArgs e)
         {
-            Home_UserControl home_UserControl = new Home_UserControl();
-            addusercontrol(home_UserControl);
+            setMenu(new Home_UserControl(), "Home");
+
 
         }
 
 
         private void btn_home_Click(object sender, EventArgs e)
         {
-            Home_UserControl home_UserControl = new Home_UserControl();
-            addusercontrol(home_UserControl);
+            setMenu(new Home_UserControl(), "Home");
+
         }
 
         private void Students_btn_Click(object sender, EventArgs e)
         {
-      
-            Student_control student_Control = new Student_control();
-            addusercontrol(student_Control);
 
-        }
-        private void addusercontrol(UserControl control)
-        {
-            control.Dock = DockStyle.Fill;
-            main_panel.Controls.Add(control);
-            control.BringToFront();
+            setMenu(new Student_control(), "Students");
+
         }
 
         private void Assesment_btn_Click(object sender, EventArgs e)

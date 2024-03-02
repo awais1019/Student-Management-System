@@ -10,14 +10,26 @@ using System.Windows.Forms;
 
 namespace MidProjectEven.UserControls
 {
-    public partial class Home_UserControl : UserControl
+    public partial class Student_infromation_card : UserControl
     {
-        public Home_UserControl()
+        public Student_infromation_card()
         {
             InitializeComponent();
+
+
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void hello__Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_email_Click(object sender, EventArgs e)
         {
 
         }

@@ -53,14 +53,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Student.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="form_main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="form_main.Designer.cs">
+      <DependentUpon>form_main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Student_Information_card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Student_Information_card.Designer.cs">
+      <DependentUpon>Student_Information_card.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Home_UserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,8 +79,8 @@
     <Compile Include="UserControls\Student_control.Designer.cs">
       <DependentUpon>Student_control.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="form_main.resx">
+      <DependentUpon>form_main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,6 +92,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\Student_Information_card.resx">
+      <DependentUpon>Student_Information_card.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Home_UserControl.resx">
       <DependentUpon>Home_UserControl.cs</DependentUpon>
     </EmbeddedResource>
