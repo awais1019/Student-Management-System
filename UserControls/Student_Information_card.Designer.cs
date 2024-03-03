@@ -114,6 +114,7 @@
             this.checkbox1.UncheckedState.BorderRadius = 2;
             this.checkbox1.UncheckedState.BorderThickness = 0;
             this.checkbox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.checkbox1.Click += new System.EventHandler(this.checkbox1_Click);
             // 
             // email_label
             // 
@@ -138,7 +139,6 @@
             this.FirstName_lable.TabIndex = 0;
             this.FirstName_lable.Text = "Muhammad Awais";
             this.FirstName_lable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.FirstName_lable.Click += new System.EventHandler(this.FirstName_lable_Click);
             // 
             // contact_label
             // 
@@ -188,7 +188,7 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
             this.Name = "Student_infromation_card";
             this.Size = new System.Drawing.Size(832, 53);
-  
+            this.Load += new System.EventHandler(this.Student_infromation_card_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

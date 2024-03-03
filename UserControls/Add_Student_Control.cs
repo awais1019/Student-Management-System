@@ -23,12 +23,12 @@ namespace MidProjectEven.UserControls
         public Add_Student_Control()
         {
             InitializeComponent();
-            FillStatusComboBox();
+       
         }
 
         private void Add_Student_Control_Load(object sender, EventArgs e)
         {
-
+            FillStatusComboBox();
         }
 
         private void FillStatusComboBox()
@@ -150,7 +150,8 @@ namespace MidProjectEven.UserControls
                 int id = GetStatusId(selectedStatus);
                 if(id!=-1)
                 {
-                    bool inserted = InsertStudent(first_name, last_name, registration_number, email, contact, id);
+                    Student student = new Student(first_name, last_name, registration_number, email, contact, id);
+                    bool inserted = InsertStudent(student);
                     if (inserted)
                     {
                         MessageBox.Show("Student Added Successfully");
@@ -199,7 +200,7 @@ namespace MidProjectEven.UserControls
             }
         }
 
-      public  bool InsertStudent(string firstname,string lastname,string reg,string email,string contact,int status)
+      public  bool InsertStudent(Student student)
         {
             using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
             {
@@ -212,12 +213,12 @@ namespace MidProjectEven.UserControls
                               "VALUES (@FirstName, @LastName, @Email, @RegistrationNumber, @Contact, @Status)";
 
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@FirstName", firstname);
-                    command.Parameters.AddWithValue("@LastName", lastname);
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@RegistrationNumber", reg);
+                    command.Parameters.AddWithValue("@FirstName", student.FirstName);
+                    command.Parameters.AddWithValue("@LastName", student.LastName);
+                    command.Parameters.AddWithValue("@Email", student.Email);
+                    command.Parameters.AddWithValue("@RegistrationNumber", student.RegistrationNumber);
                     command.Parameters.AddWithValue("@Contact", contact);
-                    command.Parameters.AddWithValue("@Status", status);
+                    command.Parameters.AddWithValue("@Status", student.Status);
                     command.ExecuteNonQuery();
 
                     return true;

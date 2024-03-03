@@ -7,14 +7,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MidProjectEven.Classes
 {
-    internal class Student
+    public class Student
     {
-        string FirstName { get; set; }
-         string LastName { get; set; }
-         string RegistrationNumber { get; set; }
-        string Email{ get; set; }
-        string Contact { get; set; }
-        int Status { get; set; }
+      public  string FirstName { get; set; }
+        public string LastName { get; set; }
+         public string RegistrationNumber { get; set; }
+        public string Email{ get; set; }
+        public string Contact { get; set; }
+           public  int Status { get; set; }
 
 
         public Student(string firstName, string lastName, string registrationNumber, string email, string contact, int status)

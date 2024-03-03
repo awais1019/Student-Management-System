@@ -275,6 +275,7 @@
             this.Searchbox.Size = new System.Drawing.Size(217, 41);
             this.Searchbox.TabIndex = 55;
             this.Searchbox.TextChanged += new System.EventHandler(this.Searchbox_TextChanged);
+            this.Searchbox.Leave += new System.EventHandler(this.Searchbox_Leave);
             // 
             // Student_control
             // 
@@ -287,6 +288,7 @@
             this.Margin = new System.Windows.Forms.Padding(0, 6, 6, 6);
             this.Name = "Student_control";
             this.Size = new System.Drawing.Size(834, 602);
+            this.Load += new System.EventHandler(this.Student_control_Load);
             this.Full_panel.ResumeLayout(false);
             this.status_bar_panel.ResumeLayout(false);
             this.status_bar_panel.PerformLayout();
