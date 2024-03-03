@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Student.cs" />
+    <Compile Include="Classes\Validations.cs" />
     <Compile Include="form_main.cs">
       <SubType>Form</SubType>
     </Compile>

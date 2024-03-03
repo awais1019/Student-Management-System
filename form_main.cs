@@ -26,8 +26,7 @@ namespace MidProjectEven
         {
 
             main_panel.Controls.Clear();
-            label_header_main.Text = header_name;
-            
+            label_header_main.Text = header_name; 
             main_panel.Controls.Add(control);
             control.Dock = DockStyle.Fill;
         }

@@ -40,31 +40,18 @@ namespace MidProjectEven.UserControls
          
         }
 
-        private void label_email_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Card_table_layout_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void count_students_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void Add_student_btn_Click(object sender, EventArgs e)
         {
             Full_panel.Controls.Clear();
-            Full_panel.Controls.Add(new Add_Student_Control());
+            Add_Student_Control control = new Add_Student_Control();
+            Full_panel.Dock = DockStyle.Fill;
+           control.Dock= DockStyle.Fill;
+            Full_panel.Controls.Add(control);
+          
         }
+   
+        
 
         private void Searchbox_TextChanged(object sender, EventArgs e)
         {

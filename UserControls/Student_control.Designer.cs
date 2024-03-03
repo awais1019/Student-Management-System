@@ -299,8 +299,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel Full_panel;
         private Guna.UI2.WinForms.Guna2Panel search_bar_panel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.Panel panel1;
@@ -316,5 +314,6 @@
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2TextBox Searchbox;
         private Guna.UI2.WinForms.Guna2Button Add_student_btn;
+        public System.Windows.Forms.Panel Full_panel;
     }
 }

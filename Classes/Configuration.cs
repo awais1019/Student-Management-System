@@ -1,36 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace MidProjectEven
 {
     class Configuration
     {
-        String ConnectionStr = @"Data Source=(local);Initial Catalog=ProjectB;Integrated Security=True";
-        SqlConnection con;
+        public static string SqlConnectionString = "Data Source=AWAIS-LAPTOP;Initial Catalog=ProjectB;Integrated Security=True;Encrypt=False";
+
         private static Configuration _instance;
-        public static Configuration getInstance()
+    
+
+        public static void getStudents()
         {
-            if (_instance == null)
-                _instance = new Configuration();
-            return _instance;
+            using(var con = new SqlConnection(SqlConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Student;", con);
+
+
+            }
         }
-        private Configuration()
-        {
-            con = new SqlConnection(ConnectionStr);
-            con.Open();
-        }
-        public SqlConnection getConnection()
-        {
-            return con;
-        }
+
+
+
+      
+
+
     }
 }
-
-
-
-
-
-
