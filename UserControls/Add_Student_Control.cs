@@ -1,4 +1,5 @@
 ﻿using MidProjectEven.Classes;
+using MidProjectEven.Classes.DL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,19 +17,23 @@ namespace MidProjectEven.UserControls
 {
     public partial class Add_Student_Control : UserControl
     {
+        private bool controlRemoved = false;
         string first_name, last_name, email, registration_number, contact;
         int selectindex;
+        Student student;
+     
 
-
-        public Add_Student_Control()
+        public Add_Student_Control(Student student)
         {
             InitializeComponent();
+            this.student = student;
        
         }
 
         private void Add_Student_Control_Load(object sender, EventArgs e)
         {
             FillStatusComboBox();
+            AddDataToTextBoxes();
         }
 
         private void FillStatusComboBox()
@@ -62,6 +67,18 @@ namespace MidProjectEven.UserControls
                 }
             }
 
+        }
+        public void  AddDataToTextBoxes()
+        {
+            if(student != null)
+            {
+                txtFirstName.Text = student.FirstName;
+                lastnametxt.Text = student.LastName;
+                email_txtbox.Text = student.Email;
+                reg_txtbox.Text = student.RegistrationNumber;
+                contact_txt.Text = student.Contact;
+                Add_btn.Text = "Edit";
+            }
         }
 
 
@@ -173,15 +190,20 @@ namespace MidProjectEven.UserControls
 
         private void back_btn_Click(object sender, EventArgs e)
         {
-
-
-          /**/
-              
+    
+          
+      
         }
+
 
         private void back_btn_Leave(object sender, EventArgs e)
         {
+         
+        }
 
+        private void back_btn_ControlRemoved(object sender, ControlEventArgs e)
+        {
+      
         }
 
         private void txtFirstName_TextChanged(object sender, EventArgs e)
@@ -200,7 +222,7 @@ namespace MidProjectEven.UserControls
             }
         }
 
-      public  bool InsertStudent(Student student)
+  /*    public  bool InsertStudent(Student student)
         {
             using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
             {
@@ -230,8 +252,8 @@ namespace MidProjectEven.UserControls
                     MessageBox.Show(ex.Message);
                 }
                 return false;
-            }
-        }
+            }*/
+  /*      }*/
           public  void clearfieldes()
         {
             txtFirstName.Text = "";
@@ -271,6 +293,102 @@ namespace MidProjectEven.UserControls
                 }
             }
         }
+        public bool InsertStudent(Student student)
+        {
+            using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
+            {
+                connection.Open();
+                try
+                {
+
+                    string checkQuery = "SELECT COUNT(*) FROM Student WHERE RegistrationNumber = @RegistrationNumber";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@RegistrationNumber", student.RegistrationNumber);
+
+                    int existingCount = (int)checkCommand.ExecuteScalar();
+
+                    if (existingCount > 0)
+                    {
+                        MessageBox.Show("Student with the same Registration Number already exists.");
+                        return false;
+                    }
+
+      
+                    string insertQuery = "INSERT INTO Student (FirstName, LastName, Email, RegistrationNumber, Contact, Status) " +
+                                         "VALUES (@FirstName, @LastName, @Email, @RegistrationNumber, @Contact, @Status)";
+
+                    SqlCommand command = new SqlCommand(insertQuery, connection);
+                    command.Parameters.AddWithValue("@FirstName", student.FirstName);
+                    command.Parameters.AddWithValue("@LastName", student.LastName);
+                    command.Parameters.AddWithValue("@Email", student.Email);
+                    command.Parameters.AddWithValue("@RegistrationNumber", student.RegistrationNumber);
+                    command.Parameters.AddWithValue("@Contact", student.Contact);
+                    command.Parameters.AddWithValue("@Status", student.Status);
+                    command.ExecuteNonQuery();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                return false;
+            }
+        }
+        public bool EditStudent(string oldRegistrationNumber, Student newStudent)
+        {
+            using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
+            {
+                connection.Open();
+                try
+                {
+                    // Check if the oldRegistrationNumber exists
+                    string checkQuery = "SELECT COUNT(*) FROM Student WHERE RegistrationNumber = @OldRegistrationNumber";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@OldRegistrationNumber", oldRegistrationNumber);
+
+                    int existingCount = (int)checkCommand.ExecuteScalar();
+
+                 
+                    if (existingCount > 0)
+                    {
+                        string updateQuery = "UPDATE Student SET FirstName = @FirstName, LastName = @LastName, " +
+                                             "Email = @Email, RegistrationNumber = @NewRegistrationNumber, " +
+                                             "Contact = @Contact, Status = @Status " +
+                                             "WHERE RegistrationNumber = @OldRegistrationNumber";
+
+                        SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
+                        updateCommand.Parameters.AddWithValue("@FirstName", newStudent.FirstName);
+                        updateCommand.Parameters.AddWithValue("@LastName", newStudent.LastName);
+                        updateCommand.Parameters.AddWithValue("@Email", newStudent.Email);
+                        updateCommand.Parameters.AddWithValue("@NewRegistrationNumber", newStudent.RegistrationNumber);
+                        updateCommand.Parameters.AddWithValue("@Contact", newStudent.Contact);
+                        updateCommand.Parameters.AddWithValue("@Status", newStudent.Status);
+                        updateCommand.Parameters.AddWithValue("@OldRegistrationNumber", oldRegistrationNumber);
+
+                        updateCommand.ExecuteNonQuery();
+
+                        MessageBox.Show("Student information updated successfully.");
+                        return true;
+                    }
+                    else
+                    {
+                       
+                        MessageBox.Show("Student with the specified Old Registration Number does not exist.");
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                return false;
+            }
+        }
+
+
 
 
 

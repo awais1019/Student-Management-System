@@ -111,6 +111,7 @@
             this.back_btn.Text = "Back";
             this.back_btn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
+            this.back_btn.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.back_btn_ControlRemoved);
             this.back_btn.Leave += new System.EventHandler(this.back_btn_Leave);
             // 
             // panel2

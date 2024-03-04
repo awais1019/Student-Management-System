@@ -115,6 +115,7 @@
             this.checkbox1.UncheckedState.BorderThickness = 0;
             this.checkbox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.checkbox1.Click += new System.EventHandler(this.checkbox1_Click);
+            this.checkbox1.Leave += new System.EventHandler(this.checkbox1_Leave);
             // 
             // email_label
             // 

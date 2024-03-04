@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DL\StoreControls.cs" />
+    <Compile Include="Classes\DL\StudentDL.cs" />
     <Compile Include="Classes\Student.cs" />
     <Compile Include="Classes\Validations.cs" />
     <Compile Include="form_main.cs">
@@ -67,6 +69,12 @@
     </Compile>
     <Compile Include="UserControls\Add_Student_Control.Designer.cs">
       <DependentUpon>Add_Student_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Student_Curd_Card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Student_Curd_Card.Designer.cs">
+      <DependentUpon>Student_Curd_Card.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Student_Information_card.cs">
       <SubType>UserControl</SubType>
@@ -102,6 +110,9 @@
     <EmbeddedResource Include="UserControls\Add_Student_Control.resx">
       <DependentUpon>Add_Student_Control.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Student_Curd_Card.resx">
+      <DependentUpon>Student_Curd_Card.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Student_Information_card.resx">
       <DependentUpon>Student_Information_card.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,36 +137,59 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\discussion.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\house.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\male-student.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\notebook.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\reading-book.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Classes\Configuration.cs" />
-    <Content Include="Resources\icons8-assessment-50 %281%29.png" />
-    <Content Include="Resources\icons8-assessment-50.png" />
-    <Content Include="Resources\icons8-home-50 %281%29.png" />
-    <Content Include="Resources\icons8-home-50.png" />
-    <Content Include="Resources\icons8-logout-50.png" />
-    <Content Include="Resources\icons8-pages-50 %281%29.png" />
-    <Content Include="Resources\icons8-pages-50.png" />
-    <Content Include="Resources\icons8-sheets-50 %281%29.png" />
-    <Content Include="Resources\icons8-sheets-50.png" />
-    <Content Include="Resources\icons8-student-64 %281%29.png" />
-    <Content Include="Resources\icons8-student-64.png" />
-    <Content Include="Resources\icons8-student-80 %281%29.png" />
-    <Content Include="Resources\icons8-student-80.png" />
-    <Content Include="Resources\interface.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\discussion.png" />
+    <None Include="Resources\icons8-add-50 %281%29.png" />
+    <None Include="Resources\icons8-add-50 %282%29.png" />
+    <None Include="Resources\icons8-add-50.png" />
+    <None Include="Resources\icons8-assessment-50 %281%29.png" />
+    <Content Include="Resources\delete_img.png" />
+    <None Include="Resources\icons8-assessment-50.png" />
+    <None Include="Resources\icons8-back-50.png" />
+    <None Include="Resources\icons8-cross-50.png" />
+    <None Include="Resources\icons8-delete-24.png" />
+    <None Include="Resources\icons8-home-50 %281%29.png" />
+    <None Include="Resources\icons8-home-50.png" />
+    <None Include="Resources\icons8-logout-50.png" />
+    <None Include="Resources\icons8-maximize-48.png" />
+    <None Include="Resources\icons8-minimize-24.png" />
+    <None Include="Resources\icons8-pages-50 %281%29.png" />
+    <None Include="Resources\icons8-pages-50.png" />
+    <None Include="Resources\icons8-refresh-30.png" />
+    <None Include="Resources\icons8-search-24.png" />
+    <Content Include="Resources\icons8-sheets-50 %281%29 - Copy.png" />
+    <None Include="Resources\winner.png" />
+    <None Include="Resources\study.png" />
+    <None Include="Resources\student.png" />
+    <None Include="Resources\school.png" />
+    <None Include="Resources\reading-book.png" />
+    <None Include="Resources\notebook.png" />
+    <None Include="Resources\New Project %283%29.jpg" />
+    <None Include="Resources\interface.png" />
+    <None Include="Resources\icons8-sheets-50 %281%29.png" />
+    <Content Include="Resources\icons8-sheets-50 - Copy.png" />
+    <None Include="Resources\icons8-sheets-50.png" />
+    <Content Include="Resources\icons8-student-64 %281%29 - Copy.png" />
+    <None Include="Resources\icons8-student-64 %281%29.png" />
+    <Content Include="Resources\icons8-student-64 - Copy.png" />
+    <None Include="Resources\icons8-student-64.png" />
+    <Content Include="Resources\icons8-student-80 %281%29 - Copy.png" />
+    <None Include="Resources\icons8-student-80 %281%29.png" />
+    <Content Include="Resources\icons8-student-80 - Copy.png" />
+    <None Include="Resources\icons8-student-80.png" />
+    <None Include="Resources\icons8-students-64 %281%29.png" />
+    <None Include="Resources\icons8-students-64.png" />
+    <None Include="Resources\icons8-update-64.png" />
+    <Content Include="Resources\interface - Copy.png" />
+    <None Include="Resources\male-student - Copy.png" />
+    <None Include="Resources\notebook - Copy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

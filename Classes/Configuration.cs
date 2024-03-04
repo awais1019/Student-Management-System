@@ -7,7 +7,7 @@ namespace MidProjectEven
     {
         public static string SqlConnectionString = "Data Source=AWAIS-LAPTOP;Initial Catalog=ProjectB;Integrated Security=True;Encrypt=False";
 
-        private static Configuration _instance;
+      
     
 
         public static void getStudents()

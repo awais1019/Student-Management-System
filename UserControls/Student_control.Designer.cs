@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Student_control));
             this.Full_panel = new System.Windows.Forms.Panel();
             this.status_bar_panel = new System.Windows.Forms.Panel();
@@ -36,13 +37,14 @@
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.status_label = new System.Windows.Forms.Label();
+            this.contact_label = new System.Windows.Forms.Label();
+            this.first_name_label = new System.Windows.Forms.Label();
+            this.last_name_label = new System.Windows.Forms.Label();
+            this.email_label = new System.Windows.Forms.Label();
+            this.reg_number = new System.Windows.Forms.Label();
             this.search_bar_panel = new Guna.UI2.WinForms.Guna2Panel();
+            this.timer_to_check_selected = new System.Windows.Forms.Timer(this.components);
             this.Add_student_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Searchbox = new Guna.UI2.WinForms.Guna2TextBox();
             this.Full_panel.SuspendLayout();
@@ -104,6 +106,7 @@
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Size = new System.Drawing.Size(834, 493);
             this.flowLayoutPanel.TabIndex = 2;
+            this.flowLayoutPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.flowLayoutPanel_Scroll);
             // 
             // panel1
             // 
@@ -127,12 +130,12 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.label6, 6, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.status_label, 6, 0);
+            this.tableLayoutPanel1.Controls.Add(this.contact_label, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.first_name_label, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.last_name_label, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.email_label, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.reg_number, 4, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -141,83 +144,84 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(834, 53);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
-            // label6
+            // status_label
             // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(699, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 53);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Status";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.status_label.AutoSize = true;
+            this.status_label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.status_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.status_label.ForeColor = System.Drawing.Color.White;
+            this.status_label.Location = new System.Drawing.Point(699, 0);
+            this.status_label.Name = "status_label";
+            this.status_label.Size = new System.Drawing.Size(132, 53);
+            this.status_label.TabIndex = 5;
+            this.status_label.Text = "Status";
+            this.status_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label5
+            // contact_label
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(563, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 53);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Contact";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.contact_label.AutoSize = true;
+            this.contact_label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contact_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.contact_label.ForeColor = System.Drawing.Color.White;
+            this.contact_label.Location = new System.Drawing.Point(563, 0);
+            this.contact_label.Name = "contact_label";
+            this.contact_label.Size = new System.Drawing.Size(130, 53);
+            this.contact_label.TabIndex = 5;
+            this.contact_label.Text = "Contact";
+            this.contact_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // first_name_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(19, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 53);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "First Name";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.first_name_label.AutoSize = true;
+            this.first_name_label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.first_name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.first_name_label.ForeColor = System.Drawing.Color.White;
+            this.first_name_label.Location = new System.Drawing.Point(19, 0);
+            this.first_name_label.Name = "first_name_label";
+            this.first_name_label.Size = new System.Drawing.Size(130, 53);
+            this.first_name_label.TabIndex = 4;
+            this.first_name_label.Text = "First Name";
+            this.first_name_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.first_name_label.Click += new System.EventHandler(this.first_name_label_Click);
             // 
-            // label2
+            // last_name_label
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(155, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 53);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Last Name";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.last_name_label.AutoSize = true;
+            this.last_name_label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.last_name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.last_name_label.ForeColor = System.Drawing.Color.White;
+            this.last_name_label.Location = new System.Drawing.Point(155, 0);
+            this.last_name_label.Name = "last_name_label";
+            this.last_name_label.Size = new System.Drawing.Size(130, 53);
+            this.last_name_label.TabIndex = 5;
+            this.last_name_label.Text = "Last Name";
+            this.last_name_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // email_label
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(291, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 53);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Email";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.email_label.AutoSize = true;
+            this.email_label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.email_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.email_label.ForeColor = System.Drawing.Color.White;
+            this.email_label.Location = new System.Drawing.Point(291, 0);
+            this.email_label.Name = "email_label";
+            this.email_label.Size = new System.Drawing.Size(130, 53);
+            this.email_label.TabIndex = 6;
+            this.email_label.Text = "Email";
+            this.email_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // reg_number
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(427, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(130, 53);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Registration Number";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.reg_number.AutoSize = true;
+            this.reg_number.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reg_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.reg_number.ForeColor = System.Drawing.Color.White;
+            this.reg_number.Location = new System.Drawing.Point(427, 0);
+            this.reg_number.Name = "reg_number";
+            this.reg_number.Size = new System.Drawing.Size(130, 53);
+            this.reg_number.TabIndex = 7;
+            this.reg_number.Text = "Registration Number";
+            this.reg_number.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // search_bar_panel
             // 
@@ -229,6 +233,11 @@
             this.search_bar_panel.Name = "search_bar_panel";
             this.search_bar_panel.Size = new System.Drawing.Size(834, 60);
             this.search_bar_panel.TabIndex = 0;
+            // 
+            // timer_to_check_selected
+            // 
+            this.timer_to_check_selected.Enabled = true;
+            this.timer_to_check_selected.Tick += new System.EventHandler(this.timer_to_check_selected_Tick);
             // 
             // Add_student_btn
             // 
@@ -308,14 +317,15 @@
         private System.Windows.Forms.Label count_students_label;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label status_label;
+        private System.Windows.Forms.Label contact_label;
+        private System.Windows.Forms.Label first_name_label;
+        private System.Windows.Forms.Label last_name_label;
+        private System.Windows.Forms.Label email_label;
+        private System.Windows.Forms.Label reg_number;
         private Guna.UI2.WinForms.Guna2TextBox Searchbox;
         private Guna.UI2.WinForms.Guna2Button Add_student_btn;
         public System.Windows.Forms.Panel Full_panel;
+        private System.Windows.Forms.Timer timer_to_check_selected;
     }
 }

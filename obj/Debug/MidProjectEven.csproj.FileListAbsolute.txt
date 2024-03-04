@@ -14,3 +14,4 @@ D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.
 D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.Home_UserControl.resources
 D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.Student_infromation_card.resources
 D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.Add_Student_Control.resources
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.Student_Curd_Card.resources
