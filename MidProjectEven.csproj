@@ -52,10 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\DL\StoreControls.cs" />
+    <Compile Include="Classes\BL\ClassAttendance.cs" />
+    <Compile Include="Classes\DL\ClassAttandanceDL.cs" />
+    <Compile Include="Classes\DL\StudentAttendanceDL.cs" />
     <Compile Include="Classes\DL\StudentDL.cs" />
-    <Compile Include="Classes\Student.cs" />
-    <Compile Include="Classes\Validations.cs" />
+    <Compile Include="Classes\BL\Student.cs" />
+    <Compile Include="Classes\BL\StudentAttendance.cs" />
+    <Compile Include="Classes\BL\Validations.cs" />
     <Compile Include="form_main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,7 +146,7 @@
     <None Include="Resources\male-student.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Configuration.cs" />
+    <Compile Include="Classes\BL\DataBase.cs" />
     <None Include="Resources\close.png" />
     <None Include="Resources\discussion.png" />
     <None Include="Resources\icons8-add-50 %281%29.png" />
@@ -187,6 +190,7 @@
     <None Include="Resources\icons8-students-64 %281%29.png" />
     <None Include="Resources\icons8-students-64.png" />
     <None Include="Resources\icons8-update-64.png" />
+    <None Include="Resources\icons8-update-64 %281%29.png" />
     <Content Include="Resources\interface - Copy.png" />
     <None Include="Resources\male-student - Copy.png" />
     <None Include="Resources\notebook - Copy.png" />

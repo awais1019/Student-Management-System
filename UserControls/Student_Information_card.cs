@@ -15,19 +15,18 @@ namespace MidProjectEven.UserControls
 {
     public partial class Student_infromation_card : UserControl
     {
-       public Student student_;
+        public Student student_;
         public bool checked_;
-        public static CheckBox checkbox=new CheckBox();
+  
     
 
         private void checkbox1_Click(object sender, EventArgs e)
         {
             bool check = checkbox1.Checked;
-            StudentDL.changechecked(student_,check);  
+            StudentDL.changechecked(student_,check);
         }
 
  
-
         private void Student_infromation_card_Load(object sender, EventArgs e)
         {
             FirstName_lable.Text = student_.FirstName;
@@ -50,15 +49,10 @@ namespace MidProjectEven.UserControls
             student_ = student;
             checked_ = false;
         }
-        public Student_infromation_card()
-        {
-           
-        }
-
 
         public string GetStatus(int id)
         {
-            using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
             {
                 try
                 {

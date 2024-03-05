@@ -34,6 +34,7 @@ namespace MidProjectEven.UserControls
         {
             FillStatusComboBox();
             AddDataToTextBoxes();
+            
         }
 
         private void FillStatusComboBox()
@@ -41,7 +42,7 @@ namespace MidProjectEven.UserControls
             status_combo_box.Items.Clear();
 
 
-            using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
             {
                 connection.Open();
 
@@ -151,40 +152,40 @@ namespace MidProjectEven.UserControls
 
         private void Add_btn_Click(object sender, EventArgs e)
         {
-
-            if (string.IsNullOrEmpty(first_name) || string.IsNullOrEmpty(last_name) || string.IsNullOrEmpty(email)
-         || string.IsNullOrEmpty(registration_number) || string.IsNullOrEmpty(contact))
+            if(Add_btn.Text=="Edit")
             {
-                MessageBox.Show("Fill All Data with Correct Format");
-                return;
-            }
-
-            if (status_combo_box.SelectedIndex != -1)
-            {
-                string selectedStatus = status_combo_box.SelectedItem.ToString();
-                selectindex = status_combo_box.SelectedIndex;
-
-                int id = GetStatusId(selectedStatus);
-                if(id!=-1)
+                string lastreg = student.RegistrationNumber;
+                Student student1 = CheckFields();
+                if (student1 != null)
                 {
-                    Student student = new Student(first_name, last_name, registration_number, email, contact, id);
-                    bool inserted = InsertStudent(student);
-                    if (inserted)
+                    bool updated = EditStudent(lastreg, student1);
+                    if (updated)
                     {
-                        MessageBox.Show("Student Added Successfully");
+                        MessageBox.Show("Student information updated successfully.");
                         clearfieldes();
                     }
+                    else
+                    {
+                        MessageBox.Show("You can not Edit this record");
+                    }
                 }
-                else
-                {
-                   /**/
-                }
-              
             }
             else
             {
-                MessageBox.Show("Please Select a Status from the combo box");
+               Student student1= CheckFields();
+                bool inserted = InsertStudent(student1);
+                if (inserted)
+                {
+                    MessageBox.Show("Student Added Successfully");
+                    clearfieldes();
+                }
+                else
+                {
+                    MessageBox.Show("Student with the same Registration Number already exists.");
+                }
             }
+
+         
 
         }
 
@@ -266,7 +267,7 @@ namespace MidProjectEven.UserControls
         }
         private int GetStatusId(string statusName)
         {
-            using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
             {
                 try
                 {
@@ -295,7 +296,7 @@ namespace MidProjectEven.UserControls
         }
         public bool InsertStudent(Student student)
         {
-            using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
             {
                 connection.Open();
                 try
@@ -309,7 +310,7 @@ namespace MidProjectEven.UserControls
 
                     if (existingCount > 0)
                     {
-                        MessageBox.Show("Student with the same Registration Number already exists.");
+              
                         return false;
                     }
 
@@ -338,12 +339,12 @@ namespace MidProjectEven.UserControls
         }
         public bool EditStudent(string oldRegistrationNumber, Student newStudent)
         {
-            using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
             {
                 connection.Open();
                 try
                 {
-                    // Check if the oldRegistrationNumber exists
+                 
                     string checkQuery = "SELECT COUNT(*) FROM Student WHERE RegistrationNumber = @OldRegistrationNumber";
                     SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
                     checkCommand.Parameters.AddWithValue("@OldRegistrationNumber", oldRegistrationNumber);
@@ -368,14 +369,12 @@ namespace MidProjectEven.UserControls
                         updateCommand.Parameters.AddWithValue("@OldRegistrationNumber", oldRegistrationNumber);
 
                         updateCommand.ExecuteNonQuery();
-
-                        MessageBox.Show("Student information updated successfully.");
                         return true;
                     }
                     else
                     {
                        
-                        MessageBox.Show("Student with the specified Old Registration Number does not exist.");
+                      
                         return false;
                     }
                 }
@@ -386,6 +385,40 @@ namespace MidProjectEven.UserControls
 
                 return false;
             }
+        }
+
+        public Student CheckFields()
+        {
+            if (string.IsNullOrEmpty(first_name) || string.IsNullOrEmpty(last_name) || string.IsNullOrEmpty(email)
+      || string.IsNullOrEmpty(registration_number) || string.IsNullOrEmpty(contact))
+            {
+                MessageBox.Show("Fill All Data with Correct Format");
+        
+            }
+
+         else if (status_combo_box.SelectedIndex != -1)
+            {
+                string selectedStatus = status_combo_box.SelectedItem.ToString();
+                selectindex = status_combo_box.SelectedIndex;
+
+                int id = GetStatusId(selectedStatus);
+                if (id != -1)
+                {
+                    Student student = new Student(first_name, last_name, registration_number, email, contact, id);
+                    return student;
+                
+                }
+                else
+                {
+                    /**/
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please Select a Status from the combo box");
+            }
+            return null;
         }
 
 
