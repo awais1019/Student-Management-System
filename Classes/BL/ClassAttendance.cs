@@ -13,6 +13,7 @@ namespace MidProjectEven.Classes
         public ClassAttendance()
         {
             AttendanceDate = DateTime.Now;
+            AttendanceDate = new DateTime(AttendanceDate.Year, AttendanceDate.Month, AttendanceDate.Day, AttendanceDate.Hour, AttendanceDate.Minute, 0);
         }
 
 

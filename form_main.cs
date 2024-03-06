@@ -101,6 +101,11 @@ namespace MidProjectEven
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void attendance_btn_Click(object sender, EventArgs e)
+        {
+            setMenu(new Attendance_Record(), "Attendance Record");
+        }
     }
   
 }

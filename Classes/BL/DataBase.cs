@@ -1,7 +1,9 @@
 ﻿using MidProjectEven.Classes;
+using MidProjectEven.Classes.BL;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Web;
 using System.Windows.Forms;
 
 namespace MidProjectEven
@@ -12,19 +14,20 @@ namespace MidProjectEven
 
 
 
-        public static List<Student> SearchData(string name)
+        public static List<Student> SearchData(string name, int status=5)
         {
             List<Student> result = new List<Student>();
 
-            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
             {
                 connection.Open();
 
                 try
                 {
-                    string query = "SELECT FirstName, LastName, Contact, Email, RegistrationNumber, Status FROM Student WHERE FirstName = @name";
+                    string query = "SELECT FirstName, LastName, Contact, Email, RegistrationNumber, Status FROM Student WHERE FirstName = @name AND Status = @status";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@name", name);
+                    command.Parameters.AddWithValue("@status", status);
 
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
@@ -47,7 +50,32 @@ namespace MidProjectEven
 
             return result;
         }
-           public static List<string>FillStatusComboBox()
+        public static void AddStudentAttendanceInDB(StudentAttendance studentAttendance)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "INSERT INTO StudentAttendance (AttendanceId, StudentId, AttendanceStatus) " +
+                                   "VALUES (@AttendanceId, @StudentId, @AttendanceStatus)";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@AttendanceId", studentAttendance.ClassAttendanceId);
+                    command.Parameters.AddWithValue("@StudentId", studentAttendance.StudentId);
+                    command.Parameters.AddWithValue("@AttendanceStatus", studentAttendance.AttendanceStatusId);
+
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        public static List<string>FillStatusComboBox()
         {
             List<string> result = new List<string>();   
            
@@ -84,7 +112,7 @@ namespace MidProjectEven
         }
         public static int GetStudentId(string registrationNumber)
         {
-            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
             {
                 connection.Open();
 
@@ -114,7 +142,7 @@ namespace MidProjectEven
 
         public static int AddClassAttendanceAndGetId(ClassAttendance classAttendance)
         {
-            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
             {
                 connection.Open();
 
@@ -144,7 +172,7 @@ namespace MidProjectEven
 
         public static int GetStatusId(string statusName)
         {
-            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
             {
                 try
                 {
@@ -169,6 +197,376 @@ namespace MidProjectEven
                 }
             }
         }
+
+      public static  List<Student> LoadActiveStudents()
+        {
+            List<Student> studentsWithStatus5 = new List<Student>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT FirstName, LastName, Contact, Email, RegistrationNumber, Status FROM Student WHERE Status = 5";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string FirstName = reader["FirstName"].ToString();
+                        string LastName = reader["LastName"].ToString();
+                        string Contact = reader["Contact"].ToString();
+                        string Email = reader["Email"].ToString();
+                        string RegistrationNumber = reader["RegistrationNumber"].ToString();
+                        int Status = Convert.ToInt32(reader["Status"]);
+                        Student student = new Student(FirstName, LastName, RegistrationNumber, Email, Contact, Status);
+                        studentsWithStatus5.Add(student);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return studentsWithStatus5;
+        }
+        public static bool MakeStudentInactive(Student student)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "UPDATE Student SET Status = 6 WHERE RegistrationNumber = @RegistrationNumber";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@RegistrationNumber", student.RegistrationNumber);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+              
+                    if (rowsAffected > 0)
+                    {
+                     
+                        return true;
+                    }
+                    else
+                    {
+                     
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+        }
+        public static List<string> GetAllDateAndTimes() 
+        {
+            List<string> result = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT AttendanceDate FROM ClassAttendance"; 
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string formattedDate = reader["AttendanceDate"].ToString(); // Get date as string
+                        result.Add(formattedDate);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return result;
+        }
+
+        public static int GetSelectedTimeIdFromClassAttendance(string selectedDate)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT Id FROM ClassAttendance WHERE AttendanceDate = @selectedDate";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@selectedDate", selectedDate);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    else
+                    {
+              
+                        return -1; 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return -1;
+        }
+        public static Dictionary<int, int> GetStudentAttendanceStatus(int attendanceId)
+        {
+            Dictionary<int, int> studentAttendanceStatus = new Dictionary<int, int>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT StudentId, AttendanceStatus FROM StudentAttendance WHERE ClassAttendanceId = @attendanceId";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@attendanceId", attendanceId);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int studentId = Convert.ToInt32(reader["StudentId"]);
+                        int attendanceStatus = Convert.ToInt32(reader["AttendanceStatus"]);
+
+                        studentAttendanceStatus.Add(studentId, attendanceStatus);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return studentAttendanceStatus;
+        }
+        public static List<StudentAttendanceWithDetails> GetAttendanceDetails(int attendanceId)
+        {
+            List<StudentAttendanceWithDetails> details = new List<StudentAttendanceWithDetails>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = @"
+                SELECT
+                    s.Id AS StudentId,
+                    s.FirstName,
+                    s.LastName,
+                    s.RegistrationNumber,
+                    s.Email,
+                    s.Contact,
+                    a.AttendanceStatus
+                FROM
+                    Student s
+                INNER JOIN
+                    StudentAttendance a ON s.Id = a.StudentId
+                WHERE
+                    a.AttendanceId = @attendanceId";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@attendanceId", attendanceId);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int studentId = Convert.ToInt32(reader["StudentId"]);
+                        string firstName = reader["FirstName"].ToString();
+                        string lastName = reader["LastName"].ToString();
+                        string regNumber = reader["RegistrationNumber"].ToString();
+                        string email = reader["Email"].ToString();
+                        string contact = reader["Contact"].ToString();
+                        int attendanceStatus = int.Parse(reader["AttendanceStatus"].ToString());
+
+                        Student student = new Student(firstName, lastName, regNumber, email, contact,6); 
+                        StudentAttendance attendance = new StudentAttendance(studentId, attendanceId, attendanceStatus);
+
+                        StudentAttendanceWithDetails detail = new StudentAttendanceWithDetails(student, attendance);
+                        details.Add(detail);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return details;
+        }
+
+        public static  int GetStatusIdOne(string statusName)
+        {
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            {
+                try
+                {
+                    string query = "SELECT LookupId FROM Lookup WHERE Name = @name AND Category = 'STUDENT_STATUS'";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@name", statusName);
+
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result == null)
+                    {
+
+                        return -1;
+                    }
+
+                    return Convert.ToInt32(result);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                    return -1;
+                }
+            }
+        }
+        public static  bool InsertStudent(Student student)
+        {
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            {
+                connection.Open();
+                try
+                {
+
+                    string checkQuery = "SELECT COUNT(*) FROM Student WHERE RegistrationNumber = @RegistrationNumber";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@RegistrationNumber", student.RegistrationNumber);
+
+                    int existingCount = (int)checkCommand.ExecuteScalar();
+
+                    if (existingCount > 0)
+                    {
+
+                        return false;
+                    }
+
+
+                    string insertQuery = "INSERT INTO Student (FirstName, LastName, Email, RegistrationNumber, Contact, Status) " +
+                                         "VALUES (@FirstName, @LastName, @Email, @RegistrationNumber, @Contact, @Status)";
+
+                    SqlCommand command = new SqlCommand(insertQuery, connection);
+                    command.Parameters.AddWithValue("@FirstName", student.FirstName);
+                    command.Parameters.AddWithValue("@LastName", student.LastName);
+                    command.Parameters.AddWithValue("@Email", student.Email);
+                    command.Parameters.AddWithValue("@RegistrationNumber", student.RegistrationNumber);
+                    command.Parameters.AddWithValue("@Contact", student.Contact);
+                    command.Parameters.AddWithValue("@Status", student.Status);
+                    command.ExecuteNonQuery();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                return false;
+            }
+        }
+        public static bool EditStudent(string oldRegistrationNumber, Student newStudent)
+        {
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            {
+                connection.Open();
+                try
+                {
+
+                    string checkQuery = "SELECT COUNT(*) FROM Student WHERE RegistrationNumber = @OldRegistrationNumber";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@OldRegistrationNumber", oldRegistrationNumber);
+
+                    int existingCount = (int)checkCommand.ExecuteScalar();
+
+
+                    if (existingCount > 0)
+                    {
+                        string updateQuery = "UPDATE Student SET FirstName = @FirstName, LastName = @LastName, " +
+                                             "Email = @Email, RegistrationNumber = @NewRegistrationNumber, " +
+                                             "Contact = @Contact, Status = @Status " +
+                                             "WHERE RegistrationNumber = @OldRegistrationNumber";
+
+                        SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
+                        updateCommand.Parameters.AddWithValue("@FirstName", newStudent.FirstName);
+                        updateCommand.Parameters.AddWithValue("@LastName", newStudent.LastName);
+                        updateCommand.Parameters.AddWithValue("@Email", newStudent.Email);
+                        updateCommand.Parameters.AddWithValue("@NewRegistrationNumber", newStudent.RegistrationNumber);
+                        updateCommand.Parameters.AddWithValue("@Contact", newStudent.Contact);
+                        updateCommand.Parameters.AddWithValue("@Status", newStudent.Status);
+                        updateCommand.Parameters.AddWithValue("@OldRegistrationNumber", oldRegistrationNumber);
+
+                        updateCommand.ExecuteNonQuery();
+                        return true;
+                    }
+                    else
+                    {
+
+
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                return false;
+            }
+        }
+        public static List<string> FillStudentStatusComboBox()
+        {
+
+            List<string> list = new List<string>(); 
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+
+                    string query = "SELECT Name FROM Lookup WHERE Category = 'STUDENT_STATUS'";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string itemName = reader["Name"].ToString();
+                        list.Add(itemName);
+                    }
+
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            return list;
+
+        }
+
 
 
 

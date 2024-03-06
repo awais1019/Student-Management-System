@@ -33,6 +33,21 @@ namespace MidProjectEven.Classes.DL
        
             }
         }
+        public static void ClearStudents()
+        {
+            List.Clear();
+        }
+        public static   Student_infromation_card GetCard(Student student)
+        {
+            foreach (var item in List)
+            {
+                if(item.student_.RegistrationNumber==student.RegistrationNumber)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
         public static List<Student_infromation_card> count_checked_student()
         {
             List<Student_infromation_card>checked_student=new List<Student_infromation_card>();

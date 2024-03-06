@@ -38,7 +38,7 @@
             this.Assesment_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Rubric_Levels_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Rubric_btn = new Guna.UI2.WinForms.Guna2Button();
-            this.clo_btn = new Guna.UI2.WinForms.Guna2Button();
+            this.attendance_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Students_btn = new Guna.UI2.WinForms.Guna2Button();
             this.btn_home = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -73,7 +73,7 @@
             this.panel2.Controls.Add(this.Assesment_btn);
             this.panel2.Controls.Add(this.Rubric_Levels_btn);
             this.panel2.Controls.Add(this.Rubric_btn);
-            this.panel2.Controls.Add(this.clo_btn);
+            this.panel2.Controls.Add(this.attendance_btn);
             this.panel2.Controls.Add(this.Students_btn);
             this.panel2.Controls.Add(this.btn_home);
             this.panel2.Controls.Add(this.guna2Panel1);
@@ -223,32 +223,33 @@
             this.Rubric_btn.UseTransparentBackground = true;
             this.Rubric_btn.CheckedChanged += new System.EventHandler(this.btn_home_CheckedChanged);
             // 
-            // clo_btn
+            // attendance_btn
             // 
-            this.clo_btn.BackColor = System.Drawing.Color.Transparent;
-            this.clo_btn.BorderColor = System.Drawing.Color.White;
-            this.clo_btn.BorderRadius = 25;
-            this.clo_btn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.clo_btn.CheckedState.FillColor = System.Drawing.Color.White;
-            this.clo_btn.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
-            this.clo_btn.CheckedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
-            this.clo_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.clo_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.clo_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.clo_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.clo_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
-            this.clo_btn.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.clo_btn.ForeColor = System.Drawing.Color.White;
-            this.clo_btn.Image = ((System.Drawing.Image)(resources.GetObject("clo_btn.Image")));
-            this.clo_btn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.clo_btn.Location = new System.Drawing.Point(30, 259);
-            this.clo_btn.Name = "clo_btn";
-            this.clo_btn.Size = new System.Drawing.Size(149, 43);
-            this.clo_btn.TabIndex = 4;
-            this.clo_btn.Text = "CLO";
-            this.clo_btn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.clo_btn.UseTransparentBackground = true;
-            this.clo_btn.CheckedChanged += new System.EventHandler(this.btn_home_CheckedChanged);
+            this.attendance_btn.BackColor = System.Drawing.Color.Transparent;
+            this.attendance_btn.BorderColor = System.Drawing.Color.White;
+            this.attendance_btn.BorderRadius = 25;
+            this.attendance_btn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.attendance_btn.CheckedState.FillColor = System.Drawing.Color.White;
+            this.attendance_btn.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
+            this.attendance_btn.CheckedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.attendance_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.attendance_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.attendance_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.attendance_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.attendance_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
+            this.attendance_btn.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.attendance_btn.ForeColor = System.Drawing.Color.White;
+            this.attendance_btn.Image = ((System.Drawing.Image)(resources.GetObject("attendance_btn.Image")));
+            this.attendance_btn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.attendance_btn.Location = new System.Drawing.Point(30, 259);
+            this.attendance_btn.Name = "attendance_btn";
+            this.attendance_btn.Size = new System.Drawing.Size(149, 43);
+            this.attendance_btn.TabIndex = 4;
+            this.attendance_btn.Text = "Attendance";
+            this.attendance_btn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.attendance_btn.UseTransparentBackground = true;
+            this.attendance_btn.CheckedChanged += new System.EventHandler(this.btn_home_CheckedChanged);
+            this.attendance_btn.Click += new System.EventHandler(this.attendance_btn_Click);
             // 
             // Students_btn
             // 
@@ -474,7 +475,7 @@
         private Guna.UI2.WinForms.Guna2Button close_btn;
         private Guna.UI2.WinForms.Guna2Button btn_home;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Button clo_btn;
+        private Guna.UI2.WinForms.Guna2Button attendance_btn;
         private Guna.UI2.WinForms.Guna2Button Students_btn;
         private Guna.UI2.WinForms.Guna2Button Rubric_Levels_btn;
         private Guna.UI2.WinForms.Guna2Button Rubric_btn;

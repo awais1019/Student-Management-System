@@ -23,58 +23,29 @@ namespace MidProjectEven.UserControls
 
 
         List<Student_infromation_card> checked_students=new List<Student_infromation_card> ();
-        ClassAttendance attendance;
-        int value;
+        ClassAttendance attendance=null;
+        int AttendanceStatus = -1, studentid = -1, attendanceid = -1;
+
         public Student_control() 
         {
         
             InitializeComponent();
             FillAttendancebox();
+            flowLayoutPanel.Controls.Clear();
             Attendance_box.SelectedIndex = 0;
-            value = 0;
+   
 
 
 
         }
-        List<Student> loadData()
-        {
-            List<Student> list = new List<Student>();
-            StudentDL.List.Clear();
-            list.Clear();
-            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
-            {
-                connection.Open();
 
-                try
-                {
-                    string query = "SELECT FirstName, LastName, Contact, Email, RegistrationNumber, Status FROM Student";
-                    SqlCommand command = new SqlCommand(query, connection);
-
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string FirstName = reader["FirstName"].ToString();
-                        string LastName = reader["LastName"].ToString();
-                        string Contact = reader["Contact"].ToString();
-                        string Email = reader["Email"].ToString();
-                        string RegistrationNumber = reader["RegistrationNumber"].ToString();
-                        int Status = Convert.ToInt32(reader["Status"]);
-                        Student student = new Student (FirstName, LastName, RegistrationNumber, Email, Contact ,Status);                     
-                        list.Add(student);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            return list;
-        }
 
    void display()
         {
-            List<Student> list = loadData();
-            foreach(var person in list)
+ 
+            List<Student> list = DataBase.LoadActiveStudents();
+            StudentDL.ClearStudents();
+            foreach (var person in list)
             {
                 Student student = new Student(person.FirstName, person.LastName, person.RegistrationNumber, person.Email, person.Contact, person.Status);
                 Student_infromation_card card = new Student_infromation_card(student);
@@ -86,6 +57,7 @@ namespace MidProjectEven.UserControls
 
         void Addcards()
         {
+            flowLayoutPanel.Controls.Clear();
             foreach (var card in StudentDL.List)
             {
                 flowLayoutPanel.Controls.Add(card);
@@ -95,14 +67,15 @@ namespace MidProjectEven.UserControls
         void display(List<Student> list)
         {
             flowLayoutPanel.Controls.Clear();
+            StudentDL.ClearStudents();
             foreach (var person in list)
             {
                 Student student = new Student(person.FirstName, person.LastName, person.RegistrationNumber, person.Email, person.Contact, person.Status);
                 Student_infromation_card card = new Student_infromation_card(student);
                 StudentDL.Add_Students(card);
                 flowLayoutPanel.Controls.Add(card);
-                flowLayoutPanel.ResumeLayout();
             }
+                flowLayoutPanel.ResumeLayout();
             count_students_label.Text = list.Count.ToString();
 
         }
@@ -123,8 +96,6 @@ namespace MidProjectEven.UserControls
             }
 
 
-
-
         }
 
 
@@ -140,7 +111,7 @@ namespace MidProjectEven.UserControls
             else
             {
                 MessageBox.Show("No Record Found");
-                databind();
+
             }
         }
 
@@ -151,13 +122,14 @@ namespace MidProjectEven.UserControls
 
         public void databind()
         {
-            loadData();
+          
             display();
         }
       
 
         private void Searchbox_Leave(object sender, EventArgs e)
         {
+            flowLayoutPanel.Controls.Clear();
             databind();
         }
 
@@ -211,6 +183,30 @@ namespace MidProjectEven.UserControls
 
         private void Delete_btn_Click(object sender, EventArgs e)
         {
+            checked_students = StudentDL.count_checked_student();
+            if (checked_students.Count > 0)
+            {
+
+
+                for (int i = 0; i < checked_students.Count; i++)
+                {
+                    Student student = checked_students[i].student_;
+                    Student_infromation_card card = StudentDL.GetCard(student);
+                    flowLayoutPanel.Controls.Remove(card);
+                    StudentDL.RemoveCardFromList(card);
+                    flowLayoutPanel.Controls.Clear();
+                    bool deleted = DataBase.MakeStudentInactive(student);
+                    StudentDL.changechecked(student, false);
+                
+                }
+               if(checked_students.Count==1)
+                MessageBox.Show("Student deleted successfully.");
+                else
+                {
+                    MessageBox.Show("Students deleted successfully.");
+                }
+                databind();
+  }
             
         }
 
@@ -231,7 +227,7 @@ namespace MidProjectEven.UserControls
         private void Mark_Attandance_Click(object sender, EventArgs e)
         {
             checked_students = StudentDL.count_checked_student();
-            int AttendanceStatus=-1, studentid=-1, attendanceid=-1;
+
 
             if (checked_students.Count > 1)
             {
@@ -242,22 +238,25 @@ namespace MidProjectEven.UserControls
             {
                 MessageBox.Show("Please select an item in the ComboBox before proceeding.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-                attendance = new ClassAttendance();
-                ClassAttandanceDL.AddIntoList(attendance);
-             if(checked_students.Count ==1)
+            if (attendance == null)
             {
-            
-                Student student=StudentDL.GetCheckedStudent();
-                studentid=DataBase.GetStudentId(student.RegistrationNumber);
+                attendance = new ClassAttendance();
+
+                attendanceid = DataBase.AddClassAttendanceAndGetId(attendance);
+            }
+            if (checked_students.Count == 1)
+            {
+
+                Student student = StudentDL.GetCheckedStudent();
+                studentid = DataBase.GetStudentId(student.RegistrationNumber);
                 AttendanceStatus = DataBase.GetStatusId(Attendance_box.SelectedItem.ToString());
 
             }
-            attendanceid = DataBase.AddClassAttendanceAndGetId(ClassAttandanceDL.GetFirstObj());
+
             if (attendanceid != -1 && studentid != -1 && AttendanceStatus != -1)
             {
                 StudentAttendance studentAttendance = new StudentAttendance(studentid, attendanceid, AttendanceStatus);
-               bool isadd= StudentAttendanceDL.AddintoList(studentAttendance);
+                bool isadd = StudentAttendanceDL.AddintoList(studentAttendance);
                 if (!isadd)
                 {
                     MessageBox.Show("Attendance is already marked for that student. Change attendance status if you want to edit it.", "Duplicate Attendance", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -266,8 +265,9 @@ namespace MidProjectEven.UserControls
 
                 {
                     MessageBox.Show("Attendance Added");
+                    DataBase.AddStudentAttendanceInDB(studentAttendance);
                 }
-            
+
             }
 
 

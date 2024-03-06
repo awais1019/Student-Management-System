@@ -21,54 +21,36 @@ namespace MidProjectEven.UserControls
         string first_name, last_name, email, registration_number, contact;
         int selectindex;
         Student student;
-     
+
 
         public Add_Student_Control(Student student)
         {
             InitializeComponent();
             this.student = student;
-       
+
         }
 
         private void Add_Student_Control_Load(object sender, EventArgs e)
         {
             FillStatusComboBox();
             AddDataToTextBoxes();
-            
+
         }
 
-        private void FillStatusComboBox()
+        void FillStatusComboBox()
         {
             status_combo_box.Items.Clear();
-
-
-            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            List<string> list = DataBase.FillStudentStatusComboBox();
+            foreach (var item in  list)
             {
-                connection.Open();
-
-                try
-                {
-
-                    string query = "SELECT Name FROM Lookup WHERE Category = 'STUDENT_STATUS'";
-                    SqlCommand command = new SqlCommand(query, connection);
-
-
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string itemName = reader["Name"].ToString();
-                        status_combo_box.Items.Add(itemName);
-                    }
-
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                status_combo_box.Items.Add(item);
             }
-
+            status_combo_box.SelectedItem = 0;
         }
+
+        
+
+ 
         public void  AddDataToTextBoxes()
         {
             if(student != null)
@@ -158,7 +140,7 @@ namespace MidProjectEven.UserControls
                 Student student1 = CheckFields();
                 if (student1 != null)
                 {
-                    bool updated = EditStudent(lastreg, student1);
+                    bool updated = DataBase.EditStudent(lastreg, student1);
                     if (updated)
                     {
                         MessageBox.Show("Student information updated successfully.");
@@ -173,7 +155,7 @@ namespace MidProjectEven.UserControls
             else
             {
                Student student1= CheckFields();
-                bool inserted = InsertStudent(student1);
+                bool inserted = DataBase.InsertStudent(student1);
                 if (inserted)
                 {
                     MessageBox.Show("Student Added Successfully");
@@ -223,38 +205,7 @@ namespace MidProjectEven.UserControls
             }
         }
 
-  /*    public  bool InsertStudent(Student student)
-        {
-            using (SqlConnection connection = new SqlConnection(Configuration.SqlConnectionString))
-            {
 
-                connection.Open();
-                try
-                {
-
-                    string query = "INSERT INTO Student (FirstName, LastName, Email, RegistrationNumber, Contact, Status) " +
-                              "VALUES (@FirstName, @LastName, @Email, @RegistrationNumber, @Contact, @Status)";
-
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@FirstName", student.FirstName);
-                    command.Parameters.AddWithValue("@LastName", student.LastName);
-                    command.Parameters.AddWithValue("@Email", student.Email);
-                    command.Parameters.AddWithValue("@RegistrationNumber", student.RegistrationNumber);
-                    command.Parameters.AddWithValue("@Contact", contact);
-                    command.Parameters.AddWithValue("@Status", student.Status);
-                    command.ExecuteNonQuery();
-
-                    return true;
-
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message);
-                }
-                return false;
-            }*/
-  /*      }*/
           public  void clearfieldes()
         {
             txtFirstName.Text = "";
@@ -265,128 +216,7 @@ namespace MidProjectEven.UserControls
             status_combo_box.SelectedIndex = -1;
 
         }
-        private int GetStatusId(string statusName)
-        {
-            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
-            {
-                try
-                {
-                    string query = "SELECT LookupId FROM Lookup WHERE Name = @name AND Category = 'STUDENT_STATUS'";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@name", statusName);
-
-                    connection.Open();
-                    object result = command.ExecuteScalar();
-
-                    if (result == null)
-                    {
-                   
-                        return -1;
-                    }
-
-                    return Convert.ToInt32(result);
-                }
-                catch (Exception ex)
-                {
-                    
-                    MessageBox.Show(ex.Message);
-                    return -1;
-                }
-            }
-        }
-        public bool InsertStudent(Student student)
-        {
-            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
-            {
-                connection.Open();
-                try
-                {
-
-                    string checkQuery = "SELECT COUNT(*) FROM Student WHERE RegistrationNumber = @RegistrationNumber";
-                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
-                    checkCommand.Parameters.AddWithValue("@RegistrationNumber", student.RegistrationNumber);
-
-                    int existingCount = (int)checkCommand.ExecuteScalar();
-
-                    if (existingCount > 0)
-                    {
-              
-                        return false;
-                    }
-
-      
-                    string insertQuery = "INSERT INTO Student (FirstName, LastName, Email, RegistrationNumber, Contact, Status) " +
-                                         "VALUES (@FirstName, @LastName, @Email, @RegistrationNumber, @Contact, @Status)";
-
-                    SqlCommand command = new SqlCommand(insertQuery, connection);
-                    command.Parameters.AddWithValue("@FirstName", student.FirstName);
-                    command.Parameters.AddWithValue("@LastName", student.LastName);
-                    command.Parameters.AddWithValue("@Email", student.Email);
-                    command.Parameters.AddWithValue("@RegistrationNumber", student.RegistrationNumber);
-                    command.Parameters.AddWithValue("@Contact", student.Contact);
-                    command.Parameters.AddWithValue("@Status", student.Status);
-                    command.ExecuteNonQuery();
-
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-                return false;
-            }
-        }
-        public bool EditStudent(string oldRegistrationNumber, Student newStudent)
-        {
-            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
-            {
-                connection.Open();
-                try
-                {
-                 
-                    string checkQuery = "SELECT COUNT(*) FROM Student WHERE RegistrationNumber = @OldRegistrationNumber";
-                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
-                    checkCommand.Parameters.AddWithValue("@OldRegistrationNumber", oldRegistrationNumber);
-
-                    int existingCount = (int)checkCommand.ExecuteScalar();
-
-                 
-                    if (existingCount > 0)
-                    {
-                        string updateQuery = "UPDATE Student SET FirstName = @FirstName, LastName = @LastName, " +
-                                             "Email = @Email, RegistrationNumber = @NewRegistrationNumber, " +
-                                             "Contact = @Contact, Status = @Status " +
-                                             "WHERE RegistrationNumber = @OldRegistrationNumber";
-
-                        SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
-                        updateCommand.Parameters.AddWithValue("@FirstName", newStudent.FirstName);
-                        updateCommand.Parameters.AddWithValue("@LastName", newStudent.LastName);
-                        updateCommand.Parameters.AddWithValue("@Email", newStudent.Email);
-                        updateCommand.Parameters.AddWithValue("@NewRegistrationNumber", newStudent.RegistrationNumber);
-                        updateCommand.Parameters.AddWithValue("@Contact", newStudent.Contact);
-                        updateCommand.Parameters.AddWithValue("@Status", newStudent.Status);
-                        updateCommand.Parameters.AddWithValue("@OldRegistrationNumber", oldRegistrationNumber);
-
-                        updateCommand.ExecuteNonQuery();
-                        return true;
-                    }
-                    else
-                    {
-                       
-                      
-                        return false;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-                return false;
-            }
-        }
-
+     
         public Student CheckFields()
         {
             if (string.IsNullOrEmpty(first_name) || string.IsNullOrEmpty(last_name) || string.IsNullOrEmpty(email)
@@ -401,7 +231,7 @@ namespace MidProjectEven.UserControls
                 string selectedStatus = status_combo_box.SelectedItem.ToString();
                 selectindex = status_combo_box.SelectedIndex;
 
-                int id = GetStatusId(selectedStatus);
+                int id = DataBase.GetStatusIdOne(selectedStatus);
                 if (id != -1)
                 {
                     Student student = new Student(first_name, last_name, registration_number, email, contact, id);

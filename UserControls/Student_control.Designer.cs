@@ -44,12 +44,12 @@
             this.email_label = new System.Windows.Forms.Label();
             this.reg_number = new System.Windows.Forms.Label();
             this.search_bar_panel = new Guna.UI2.WinForms.Guna2Panel();
+            this.Mark_Attandance = new Guna.UI2.WinForms.Guna2Button();
+            this.Attendance_box = new Guna.UI2.WinForms.Guna2ComboBox();
             this.Delete_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Add_student_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Searchbox = new Guna.UI2.WinForms.Guna2TextBox();
             this.timer_to_check_selected = new System.Windows.Forms.Timer(this.components);
-            this.Attendance_box = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.Mark_Attandance = new Guna.UI2.WinForms.Guna2Button();
             this.Full_panel.SuspendLayout();
             this.status_bar_panel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -84,17 +84,20 @@
             // count_students_label
             // 
             this.count_students_label.AutoSize = true;
+            this.count_students_label.Dock = System.Windows.Forms.DockStyle.Left;
             this.count_students_label.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.count_students_label.Location = new System.Drawing.Point(104, 3);
+            this.count_students_label.Location = new System.Drawing.Point(105, 0);
             this.count_students_label.Name = "count_students_label";
-            this.count_students_label.Size = new System.Drawing.Size(0, 19);
+            this.count_students_label.Size = new System.Drawing.Size(18, 19);
             this.count_students_label.TabIndex = 9;
+            this.count_students_label.Text = "0";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 3);
+            this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(105, 19);
             this.label7.TabIndex = 0;
@@ -239,6 +242,43 @@
             this.search_bar_panel.Size = new System.Drawing.Size(834, 60);
             this.search_bar_panel.TabIndex = 0;
             // 
+            // Mark_Attandance
+            // 
+            this.Mark_Attandance.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Mark_Attandance.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.Mark_Attandance.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.Mark_Attandance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.Mark_Attandance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Mark_Attandance.FillColor = System.Drawing.Color.White;
+            this.Mark_Attandance.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Mark_Attandance.ForeColor = System.Drawing.Color.Black;
+            this.Mark_Attandance.Image = ((System.Drawing.Image)(resources.GetObject("Mark_Attandance.Image")));
+            this.Mark_Attandance.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Mark_Attandance.Location = new System.Drawing.Point(324, 14);
+            this.Mark_Attandance.Name = "Mark_Attandance";
+            this.Mark_Attandance.Size = new System.Drawing.Size(182, 36);
+            this.Mark_Attandance.TabIndex = 58;
+            this.Mark_Attandance.Text = "Mark Attendance";
+            this.Mark_Attandance.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Mark_Attandance.Click += new System.EventHandler(this.Mark_Attandance_Click);
+            // 
+            // Attendance_box
+            // 
+            this.Attendance_box.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Attendance_box.BackColor = System.Drawing.Color.Transparent;
+            this.Attendance_box.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.Attendance_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Attendance_box.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.Attendance_box.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.Attendance_box.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Attendance_box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.Attendance_box.ItemHeight = 30;
+            this.Attendance_box.Location = new System.Drawing.Point(512, 14);
+            this.Attendance_box.Name = "Attendance_box";
+            this.Attendance_box.Size = new System.Drawing.Size(120, 36);
+            this.Attendance_box.TabIndex = 0;
+            this.Attendance_box.SelectedIndexChanged += new System.EventHandler(this.Attendance_box_SelectedIndexChanged);
+            // 
             // Delete_btn
             // 
             this.Delete_btn.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -251,6 +291,7 @@
             this.Delete_btn.ForeColor = System.Drawing.Color.Black;
             this.Delete_btn.Image = ((System.Drawing.Image)(resources.GetObject("Delete_btn.Image")));
             this.Delete_btn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Delete_btn.ImageSize = new System.Drawing.Size(18, 18);
             this.Delete_btn.Location = new System.Drawing.Point(160, 13);
             this.Delete_btn.Name = "Delete_btn";
             this.Delete_btn.Size = new System.Drawing.Size(158, 37);
@@ -273,7 +314,7 @@
             this.Add_student_btn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.Add_student_btn.Location = new System.Drawing.Point(3, 13);
             this.Add_student_btn.Name = "Add_student_btn";
-            this.Add_student_btn.Size = new System.Drawing.Size(158, 37);
+            this.Add_student_btn.Size = new System.Drawing.Size(151, 37);
             this.Add_student_btn.TabIndex = 56;
             this.Add_student_btn.Text = "Add Student";
             this.Add_student_btn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -310,43 +351,6 @@
             // 
             this.timer_to_check_selected.Enabled = true;
             this.timer_to_check_selected.Tick += new System.EventHandler(this.timer_to_check_selected_Tick);
-            // 
-            // Attendance_box
-            // 
-            this.Attendance_box.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Attendance_box.BackColor = System.Drawing.Color.Transparent;
-            this.Attendance_box.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.Attendance_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Attendance_box.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.Attendance_box.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.Attendance_box.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Attendance_box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.Attendance_box.ItemHeight = 30;
-            this.Attendance_box.Location = new System.Drawing.Point(512, 14);
-            this.Attendance_box.Name = "Attendance_box";
-            this.Attendance_box.Size = new System.Drawing.Size(120, 36);
-            this.Attendance_box.TabIndex = 0;
-            this.Attendance_box.SelectedIndexChanged += new System.EventHandler(this.Attendance_box_SelectedIndexChanged);
-            // 
-            // Mark_Attandance
-            // 
-            this.Mark_Attandance.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Mark_Attandance.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.Mark_Attandance.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.Mark_Attandance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.Mark_Attandance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.Mark_Attandance.FillColor = System.Drawing.Color.White;
-            this.Mark_Attandance.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Mark_Attandance.ForeColor = System.Drawing.Color.Black;
-            this.Mark_Attandance.Image = ((System.Drawing.Image)(resources.GetObject("Mark_Attandance.Image")));
-            this.Mark_Attandance.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.Mark_Attandance.Location = new System.Drawing.Point(324, 14);
-            this.Mark_Attandance.Name = "Mark_Attandance";
-            this.Mark_Attandance.Size = new System.Drawing.Size(182, 36);
-            this.Mark_Attandance.TabIndex = 58;
-            this.Mark_Attandance.Text = "Mark Attendance";
-            this.Mark_Attandance.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.Mark_Attandance.Click += new System.EventHandler(this.Mark_Attandance_Click);
             // 
             // Student_control
             // 

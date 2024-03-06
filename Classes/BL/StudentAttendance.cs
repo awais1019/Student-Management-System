@@ -9,8 +9,8 @@ namespace MidProjectEven.Classes
     public class StudentAttendance
     {
 
-        public int StudentId { get; set; }
         public int ClassAttendanceId { get; set; }
+        public int StudentId { get; set; }
         public int AttendanceStatusId { get; set; }
         public StudentAttendance(int studentId, int classAttendanceId, int attendanceStatusId)
         {
