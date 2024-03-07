@@ -106,6 +106,11 @@ namespace MidProjectEven
         {
             setMenu(new Attendance_Record(), "Attendance Record");
         }
+
+        private void Clo_btn_Click(object sender, EventArgs e)
+        {
+            setMenu(new ManageClos_Control(), "CLO Details and Rubric Management");
+        }
     }
   
 }

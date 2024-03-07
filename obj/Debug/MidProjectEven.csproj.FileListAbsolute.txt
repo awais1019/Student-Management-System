@@ -16,3 +16,5 @@ D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.
 D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.Add_Student_Control.resources
 D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.Student_Curd_Card.resources
 D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.Attendance_Record.resources
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.ManageClos_Control.resources
+D:\Study\Semster 4\Labs\Data Base\Tasks\MidProjectEven\obj\Debug\MidProjectEven.UserControls.Clo_Rubrics_Card.resources

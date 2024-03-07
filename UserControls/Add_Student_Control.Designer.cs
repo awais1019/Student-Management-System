@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_Student_Control));
             this.status_combo_box = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
             this.back_btn = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.contact_labe = new System.Windows.Forms.Label();
@@ -73,7 +72,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.back_btn);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -81,15 +79,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(834, 602);
             this.panel1.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(111, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 20);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "Addition";
             // 
             // back_btn
             // 
@@ -517,7 +506,6 @@
             this.Size = new System.Drawing.Size(834, 602);
             this.Load += new System.EventHandler(this.Add_Student_Control_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -546,7 +534,6 @@
         private Guna.UI2.WinForms.Guna2TextBox email_txtbox;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2Button Add_btn;
-        private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2Button back_btn;
         private System.Windows.Forms.Label name_label;
         private System.Windows.Forms.Label last_name_label;

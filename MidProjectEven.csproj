@@ -53,7 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\BL\ClassAttendance.cs" />
+    <Compile Include="Classes\BL\CloRubric.cs" />
+    <Compile Include="Classes\BL\RubricLevel.cs" />
+    <Compile Include="Classes\BL\Rubrics.cs" />
     <Compile Include="Classes\BL\StudentAttendanceDetails.cs" />
+    <Compile Include="Classes\BL\Clo.cs" />
     <Compile Include="Classes\DL\ClassAttandanceDL.cs" />
     <Compile Include="Classes\DL\StudentAttendanceDL.cs" />
     <Compile Include="Classes\DL\StudentDL.cs" />
@@ -79,6 +83,18 @@
     </Compile>
     <Compile Include="UserControls\Attendance_Record.Designer.cs">
       <DependentUpon>Attendance_Record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Clo_Rubrics_Card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Clo_Rubrics_Card.Designer.cs">
+      <DependentUpon>Clo_Rubrics_Card.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ManageClos_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ManageClos_Control.Designer.cs">
+      <DependentUpon>ManageClos_Control.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Student_Curd_Card.cs">
       <SubType>UserControl</SubType>
@@ -122,6 +138,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Attendance_Record.resx">
       <DependentUpon>Attendance_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Clo_Rubrics_Card.resx">
+      <DependentUpon>Clo_Rubrics_Card.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ManageClos_Control.resx">
+      <DependentUpon>ManageClos_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Student_Curd_Card.resx">
       <DependentUpon>Student_Curd_Card.cs</DependentUpon>
