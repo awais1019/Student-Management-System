@@ -52,12 +52,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BL\Assessment.cs" />
+    <Compile Include="Classes\BL\AssessmentComponent.cs" />
     <Compile Include="Classes\BL\ClassAttendance.cs" />
     <Compile Include="Classes\BL\CloRubric.cs" />
     <Compile Include="Classes\BL\RubricLevel.cs" />
     <Compile Include="Classes\BL\Rubrics.cs" />
     <Compile Include="Classes\BL\StudentAttendanceDetails.cs" />
     <Compile Include="Classes\BL\Clo.cs" />
+    <Compile Include="Classes\BL\StudentResult.cs" />
     <Compile Include="Classes\DL\ClassAttandanceDL.cs" />
     <Compile Include="Classes\DL\StudentAttendanceDL.cs" />
     <Compile Include="Classes\DL\StudentDL.cs" />

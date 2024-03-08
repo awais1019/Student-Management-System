@@ -18,6 +18,7 @@ namespace MidProjectEven.UserControls
         private string rubricDetails;
         private string rubriclevelDetails;
         private int measurementLevel;
+        Clo_Rubrics_Card card;
         public ManageClos_Control()
         {
             InitializeComponent();
@@ -44,15 +45,24 @@ namespace MidProjectEven.UserControls
                     if(Rubric_id!=-1)
                     {
                         RubricLevel level=new RubricLevel(Rubric_id, rubriclevelDetails, measurementLevel);
-                        bool istrue=DataBase.StoreLevelAndCheck(level);
-                        if(istrue) {
-                            MessageBox.Show("CLo with its Rubric and Rubric Levels saved");
+                       bool isready= DataBase.DoesRubricHaveLevelWithMeasurement(Rubric_id, measurementLevel);
+                        if (isready)
+                        {
+                            MessageBox.Show("Rubric Level with this Measurment Levle Already Exis");
                         }
                         else
                         {
-                            MessageBox.Show("wrong");
+                            bool istrue = DataBase.StoreLevelAndCheck(level);
+                            if (istrue)
+                            {
+                                MessageBox.Show("CLo with its Rubric and Rubric Levels saved");
+                                loadClos();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Rubric  or Rubric Level Already Exits");
+                            }
                         }
-
                     }
                 }
             }
@@ -116,10 +126,28 @@ namespace MidProjectEven.UserControls
 
         private void show_btn_Click(object sender, EventArgs e)
         {
-            Clo_Rubrics_Card card = new Clo_Rubrics_Card();
-     
-            flowLayoutPanel1.Controls.Add(card);
-           
+            flowLayoutPanel1.Controls.Clear();
+            string selectedclo=AllClos_box.SelectedItem.ToString();
+            int Cloid = DataBase.GetCloId(selectedclo);
+            if(Cloid!=-1)
+            {
+                card=new Clo_Rubrics_Card();
+                card.FillCloName(selectedclo);
+                List<Rubric> rubric_list = DataBase.GetRubricsForClo(Cloid);
+                int j = 1;
+                for (int i = 0; i <rubric_list.Count; i++,j++)
+                {
+                    List<RubricLevel> rubricLevels = DataBase.GetRubricLevels(rubric_list[i].id);
+                    Rubric rubric = rubric_list[i];
+
+              
+                    card.FillRubricsAndRubricsLevels(rubric, rubricLevels, j);
+                }
+
+
+                flowLayoutPanel1.Controls.Add(card);
+            }
+ 
             flowLayoutPanel1.Dock= DockStyle.Fill;
 
             flowLayoutPanel1.ResumeLayout();
@@ -129,15 +157,6 @@ namespace MidProjectEven.UserControls
         {
             List<string>list=DataBase.GetAllCloNames();
             AllClos_box.DataSource = list;
-
-
-            DataGridViewTextBoxColumn rubricLevelColumn = new DataGridViewTextBoxColumn();
-            rubricLevelColumn.HeaderText = "Rubric Level Details";
-            rubricLevelColumn.DataPropertyName = "Details";  // Assuming RubricLevel has a property named Details
-           /* GridClos.Columns.Add(rubricLevelColumn);*/
-
-            // Bind Rubric Levels to the DataGridView
-            /*          dataGridView1.DataSource = cloRubric.rubricslevels;*/
         
         }
     }

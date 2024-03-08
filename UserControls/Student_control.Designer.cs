@@ -44,12 +44,12 @@
             this.email_label = new System.Windows.Forms.Label();
             this.reg_number = new System.Windows.Forms.Label();
             this.search_bar_panel = new Guna.UI2.WinForms.Guna2Panel();
-            this.Attendance_box = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.timer_to_check_selected = new System.Windows.Forms.Timer(this.components);
             this.Mark_Attandance = new Guna.UI2.WinForms.Guna2Button();
+            this.Attendance_box = new Guna.UI2.WinForms.Guna2ComboBox();
             this.Delete_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Add_student_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Searchbox = new Guna.UI2.WinForms.Guna2TextBox();
+            this.timer_to_check_selected = new System.Windows.Forms.Timer(this.components);
             this.Full_panel.SuspendLayout();
             this.status_bar_panel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -242,28 +242,6 @@
             this.search_bar_panel.Size = new System.Drawing.Size(834, 60);
             this.search_bar_panel.TabIndex = 0;
             // 
-            // Attendance_box
-            // 
-            this.Attendance_box.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Attendance_box.BackColor = System.Drawing.Color.Transparent;
-            this.Attendance_box.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.Attendance_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Attendance_box.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.Attendance_box.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.Attendance_box.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Attendance_box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.Attendance_box.ItemHeight = 30;
-            this.Attendance_box.Location = new System.Drawing.Point(512, 14);
-            this.Attendance_box.Name = "Attendance_box";
-            this.Attendance_box.Size = new System.Drawing.Size(120, 36);
-            this.Attendance_box.TabIndex = 0;
-            this.Attendance_box.SelectedIndexChanged += new System.EventHandler(this.Attendance_box_SelectedIndexChanged);
-            // 
-            // timer_to_check_selected
-            // 
-            this.timer_to_check_selected.Enabled = true;
-            this.timer_to_check_selected.Tick += new System.EventHandler(this.timer_to_check_selected_Tick);
-            // 
             // Mark_Attandance
             // 
             this.Mark_Attandance.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -283,6 +261,23 @@
             this.Mark_Attandance.Text = "Mark Attendance";
             this.Mark_Attandance.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.Mark_Attandance.Click += new System.EventHandler(this.Mark_Attandance_Click);
+            // 
+            // Attendance_box
+            // 
+            this.Attendance_box.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Attendance_box.BackColor = System.Drawing.Color.Transparent;
+            this.Attendance_box.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.Attendance_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Attendance_box.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.Attendance_box.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.Attendance_box.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Attendance_box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.Attendance_box.ItemHeight = 30;
+            this.Attendance_box.Location = new System.Drawing.Point(512, 14);
+            this.Attendance_box.Name = "Attendance_box";
+            this.Attendance_box.Size = new System.Drawing.Size(120, 36);
+            this.Attendance_box.TabIndex = 0;
+            this.Attendance_box.SelectedIndexChanged += new System.EventHandler(this.Attendance_box_SelectedIndexChanged);
             // 
             // Delete_btn
             // 
@@ -351,6 +346,11 @@
             this.Searchbox.TabIndex = 55;
             this.Searchbox.TextChanged += new System.EventHandler(this.Searchbox_TextChanged);
             this.Searchbox.Leave += new System.EventHandler(this.Searchbox_Leave);
+            // 
+            // timer_to_check_selected
+            // 
+            this.timer_to_check_selected.Enabled = true;
+            this.timer_to_check_selected.Tick += new System.EventHandler(this.timer_to_check_selected_Tick);
             // 
             // Student_control
             // 

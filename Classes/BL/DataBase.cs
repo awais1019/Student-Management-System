@@ -755,7 +755,131 @@ namespace MidProjectEven
 
             return cloNames;
         }
+        public static int GetCloId(string name)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
 
+                try
+                {
+                    string query = "SELECT Id FROM Clo WHERE Name = @name";
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+                    sqlCommand.Parameters.AddWithValue("@name", name);
+
+                   
+                    object result = sqlCommand.ExecuteScalar();
+
+                    return result != null ? Convert.ToInt32(result) : -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+             
+                    return -1;
+                }
+            }
+        }
+        public static List<Rubric> GetRubricsForClo(int cloId)
+        {
+            List<Rubric> rubricList = new List<Rubric>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT Id, Details, CloId FROM Rubric WHERE CloId = @cloId";
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+                    sqlCommand.Parameters.AddWithValue("@cloId", cloId);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["Id"]);
+                            string details = reader["Details"].ToString();
+                            int associatedCloId = Convert.ToInt32(reader["CloId"]);
+
+                            Rubric rubric = new Rubric(id, details, associatedCloId);
+
+                            rubricList.Add(rubric);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+             
+                }
+            }
+
+            return rubricList;
+        }
+        public static List<RubricLevel> GetRubricLevels(int rubricId)
+        {
+            List<RubricLevel> rubricLevels = new List<RubricLevel>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT * FROM RubricLevel WHERE RubricId = @rubricId";
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+                    sqlCommand.Parameters.AddWithValue("@rubricId", rubricId);
+
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int id = Convert.ToInt32(reader["Id"]);
+                        string details = reader["Details"].ToString();
+                        int measurementLevel = Convert.ToInt32(reader["MeasurementLevel"]);
+
+                        RubricLevel rubricLevel = new RubricLevel(rubricId, details, measurementLevel);
+                        rubricLevels.Add(rubricLevel);
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return rubricLevels;
+        }
+
+
+        public static bool DoesRubricHaveLevelWithMeasurement(int rubricId, int measurementLevel)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT COUNT(*) FROM RubricLevel WHERE RubricId = @rubricId AND MeasurementLevel = @measurementLevel";
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+                    sqlCommand.Parameters.AddWithValue("@rubricId", rubricId);
+                    sqlCommand.Parameters.AddWithValue("@measurementLevel", measurementLevel);
+
+                    int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
+
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+        }
 
 
 
