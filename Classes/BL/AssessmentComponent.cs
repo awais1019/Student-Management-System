@@ -22,8 +22,8 @@ namespace MidProjectEven.Classes.BL
             Name = name;
             RubricId = rubricId;
             TotalMarks = totalMarks;
-            DateCreated = dateCreated;
-            DateUpdated = dateUpdated;
+            DateCreated = new DateTime(dateCreated.Year, dateCreated.Month, dateCreated.Day, dateCreated.Hour, dateCreated.Minute, 0);
+            DateUpdated = new DateTime(dateUpdated.Year, dateUpdated.Month, dateUpdated.Day, dateUpdated.Hour, dateUpdated.Minute, 0);
             AssessmentId = assessmentId;
         }
     }

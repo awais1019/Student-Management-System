@@ -42,9 +42,9 @@
             this.close_btn = new Guna.UI2.WinForms.Guna2Button();
             this.btn_close = new Guna.UI2.WinForms.Guna2Button();
             this.sidepicture = new System.Windows.Forms.PictureBox();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.Assessment_Components = new Guna.UI2.WinForms.Guna2Button();
             this.Assesment_btn = new Guna.UI2.WinForms.Guna2Button();
-            this.Rubric_Levels_btn = new Guna.UI2.WinForms.Guna2Button();
+            this.Rubric_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Clo_btn = new Guna.UI2.WinForms.Guna2Button();
             this.attendance_btn = new Guna.UI2.WinForms.Guna2Button();
             this.Students_btn = new Guna.UI2.WinForms.Guna2Button();
@@ -69,9 +69,9 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
             this.panel2.Controls.Add(this.btn_close);
             this.panel2.Controls.Add(this.sidepicture);
-            this.panel2.Controls.Add(this.guna2Button1);
+            this.panel2.Controls.Add(this.Assessment_Components);
             this.panel2.Controls.Add(this.Assesment_btn);
-            this.panel2.Controls.Add(this.Rubric_Levels_btn);
+            this.panel2.Controls.Add(this.Rubric_btn);
             this.panel2.Controls.Add(this.Clo_btn);
             this.panel2.Controls.Add(this.attendance_btn);
             this.panel2.Controls.Add(this.Students_btn);
@@ -238,32 +238,33 @@
             this.sidepicture.TabIndex = 4;
             this.sidepicture.TabStop = false;
             // 
-            // guna2Button1
+            // Assessment_Components
             // 
-            this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.BorderColor = System.Drawing.Color.White;
-            this.guna2Button1.BorderRadius = 25;
-            this.guna2Button1.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.guna2Button1.CheckedState.FillColor = System.Drawing.Color.White;
-            this.guna2Button1.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
-            this.guna2Button1.CheckedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button1.Image")));
-            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button1.Location = new System.Drawing.Point(30, 512);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(149, 43);
-            this.guna2Button1.TabIndex = 8;
-            this.guna2Button1.Text = "Assessment";
-            this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button1.UseTransparentBackground = true;
-            this.guna2Button1.CheckedChanged += new System.EventHandler(this.btn_home_CheckedChanged);
+            this.Assessment_Components.BackColor = System.Drawing.Color.Transparent;
+            this.Assessment_Components.BorderColor = System.Drawing.Color.White;
+            this.Assessment_Components.BorderRadius = 25;
+            this.Assessment_Components.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.Assessment_Components.CheckedState.FillColor = System.Drawing.Color.White;
+            this.Assessment_Components.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
+            this.Assessment_Components.CheckedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.Assessment_Components.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.Assessment_Components.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.Assessment_Components.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.Assessment_Components.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Assessment_Components.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
+            this.Assessment_Components.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Assessment_Components.ForeColor = System.Drawing.Color.White;
+            this.Assessment_Components.Image = ((System.Drawing.Image)(resources.GetObject("Assessment_Components.Image")));
+            this.Assessment_Components.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Assessment_Components.Location = new System.Drawing.Point(31, 441);
+            this.Assessment_Components.Name = "Assessment_Components";
+            this.Assessment_Components.Size = new System.Drawing.Size(149, 43);
+            this.Assessment_Components.TabIndex = 8;
+            this.Assessment_Components.Text = "Assessment Component";
+            this.Assessment_Components.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Assessment_Components.UseTransparentBackground = true;
+            this.Assessment_Components.CheckedChanged += new System.EventHandler(this.btn_home_CheckedChanged);
+            this.Assessment_Components.Click += new System.EventHandler(this.Assessment_Components_Click);
             // 
             // Assesment_btn
             // 
@@ -283,7 +284,7 @@
             this.Assesment_btn.ForeColor = System.Drawing.Color.White;
             this.Assesment_btn.Image = ((System.Drawing.Image)(resources.GetObject("Assesment_btn.Image")));
             this.Assesment_btn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.Assesment_btn.Location = new System.Drawing.Point(30, 449);
+            this.Assesment_btn.Location = new System.Drawing.Point(31, 381);
             this.Assesment_btn.Name = "Assesment_btn";
             this.Assesment_btn.Size = new System.Drawing.Size(149, 43);
             this.Assesment_btn.TabIndex = 7;
@@ -293,32 +294,32 @@
             this.Assesment_btn.CheckedChanged += new System.EventHandler(this.btn_home_CheckedChanged);
             this.Assesment_btn.Click += new System.EventHandler(this.Assesment_btn_Click);
             // 
-            // Rubric_Levels_btn
+            // Rubric_btn
             // 
-            this.Rubric_Levels_btn.BackColor = System.Drawing.Color.Transparent;
-            this.Rubric_Levels_btn.BorderColor = System.Drawing.Color.White;
-            this.Rubric_Levels_btn.BorderRadius = 25;
-            this.Rubric_Levels_btn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.Rubric_Levels_btn.CheckedState.FillColor = System.Drawing.Color.White;
-            this.Rubric_Levels_btn.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
-            this.Rubric_Levels_btn.CheckedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
-            this.Rubric_Levels_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.Rubric_Levels_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.Rubric_Levels_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.Rubric_Levels_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.Rubric_Levels_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
-            this.Rubric_Levels_btn.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.Rubric_Levels_btn.ForeColor = System.Drawing.Color.White;
-            this.Rubric_Levels_btn.Image = ((System.Drawing.Image)(resources.GetObject("Rubric_Levels_btn.Image")));
-            this.Rubric_Levels_btn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.Rubric_Levels_btn.Location = new System.Drawing.Point(30, 385);
-            this.Rubric_Levels_btn.Name = "Rubric_Levels_btn";
-            this.Rubric_Levels_btn.Size = new System.Drawing.Size(171, 43);
-            this.Rubric_Levels_btn.TabIndex = 6;
-            this.Rubric_Levels_btn.Text = "Rubric Levels";
-            this.Rubric_Levels_btn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.Rubric_Levels_btn.UseTransparentBackground = true;
-            this.Rubric_Levels_btn.CheckedChanged += new System.EventHandler(this.btn_home_CheckedChanged);
+            this.Rubric_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Rubric_btn.BorderColor = System.Drawing.Color.White;
+            this.Rubric_btn.BorderRadius = 25;
+            this.Rubric_btn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.Rubric_btn.CheckedState.FillColor = System.Drawing.Color.White;
+            this.Rubric_btn.CheckedState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
+            this.Rubric_btn.CheckedState.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.Rubric_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.Rubric_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.Rubric_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.Rubric_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Rubric_btn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(212)))));
+            this.Rubric_btn.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.Rubric_btn.ForeColor = System.Drawing.Color.White;
+            this.Rubric_btn.Image = ((System.Drawing.Image)(resources.GetObject("Rubric_btn.Image")));
+            this.Rubric_btn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Rubric_btn.Location = new System.Drawing.Point(21, 544);
+            this.Rubric_btn.Name = "Rubric_btn";
+            this.Rubric_btn.Size = new System.Drawing.Size(171, 43);
+            this.Rubric_btn.TabIndex = 6;
+            this.Rubric_btn.Text = "Rubric Levels";
+            this.Rubric_btn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Rubric_btn.UseTransparentBackground = true;
+            this.Rubric_btn.CheckedChanged += new System.EventHandler(this.btn_home_CheckedChanged);
             // 
             // Clo_btn
             // 
@@ -344,6 +345,7 @@
             this.Clo_btn.TabIndex = 5;
             this.Clo_btn.Text = "Clo";
             this.Clo_btn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Clo_btn.TextOffset = new System.Drawing.Point(10, 0);
             this.Clo_btn.UseTransparentBackground = true;
             this.Clo_btn.CheckedChanged += new System.EventHandler(this.btn_home_CheckedChanged);
             this.Clo_btn.Click += new System.EventHandler(this.Clo_btn_Click);
@@ -478,11 +480,11 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Button attendance_btn;
         private Guna.UI2.WinForms.Guna2Button Students_btn;
-        private Guna.UI2.WinForms.Guna2Button Rubric_Levels_btn;
+        private Guna.UI2.WinForms.Guna2Button Rubric_btn;
         private Guna.UI2.WinForms.Guna2Button Clo_btn;
         private Guna.UI2.WinForms.Guna2Button Assesment_btn;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button Assessment_Components;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2Button btn_close;

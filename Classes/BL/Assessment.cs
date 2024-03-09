@@ -8,7 +8,7 @@ namespace MidProjectEven.Classes.BL
 {
     public class Assessment
     {
-     /*   public int Id { get; set; }*/
+ 
         public string Title { get; set; }
         public DateTime DateCreated { get; set; }
         public int TotalMarks { get; set; }
@@ -16,9 +16,9 @@ namespace MidProjectEven.Classes.BL
 
         public Assessment( string title, DateTime dateCreated, int totalMarks, int totalWeightage)
         {
-         /*   Id = id;*/
+            /*   Id = id;*/
             Title = title;
-            DateCreated = dateCreated;
+            DateCreated =new DateTime(dateCreated.Year, dateCreated.Month, dateCreated.Day, dateCreated.Hour, dateCreated.Minute, 0);
             TotalMarks = totalMarks;
             TotalWeightage = totalWeightage;
         }

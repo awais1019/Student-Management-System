@@ -3,6 +3,7 @@ using MidProjectEven.Classes.BL;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text;
 using System.Web;
 using System.Windows.Forms;
 
@@ -872,6 +873,299 @@ namespace MidProjectEven
 
 
                     return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+        }
+        public static bool AddAssessment(Assessment assessment)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+               
+                    string checkQuery = "SELECT COUNT(*) FROM Assessment WHERE Title = @title";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@title", assessment.Title);
+
+                    int existingCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                    if (existingCount > 0)
+                    {
+         
+                        MessageBox.Show("Assessment with the same title already exists.");
+                        return false;
+                    }
+
+                    string insertQuery = "INSERT INTO Assessment (Title, DateCreated, TotalMarks, TotalWeightage) " +
+                                         "VALUES (@title, @dateCreated, @totalMarks, @totalWeightage)";
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
+                    insertCommand.Parameters.AddWithValue("@title", assessment.Title);
+                    insertCommand.Parameters.AddWithValue("@dateCreated", assessment.DateCreated);
+                    insertCommand.Parameters.AddWithValue("@totalMarks", assessment.TotalMarks);
+                    insertCommand.Parameters.AddWithValue("@totalWeightage", assessment.TotalWeightage);
+
+                    insertCommand.ExecuteNonQuery();
+
+                    MessageBox.Show("Assessment added successfully.");
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+        }
+        public static List<Assessment> GetAllAssessments()
+        {
+            List<Assessment> assessments = new List<Assessment>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT Title, DateCreated, TotalMarks, TotalWeightage FROM Assessment";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            string Title = Convert.ToString(reader["Title"]);
+                            DateTime DateCreated = Convert.ToDateTime(reader["DateCreated"]);
+                            int TotalMarks = Convert.ToInt32(reader["TotalMarks"]);
+                            int TotalWeightage = Convert.ToInt32(reader["TotalWeightage"]);
+                            Assessment assessment = new Assessment(Title, DateCreated, TotalMarks, TotalMarks);
+                            assessments.Add(assessment);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return assessments;
+        }
+        public static bool EditAssessment(Assessment assessment)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+            
+                    string checkQuery = "SELECT COUNT(*) FROM Assessment WHERE Title = @title";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@title", assessment.Title);
+
+                    int existingCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                    if (existingCount == 0)
+                    {
+                        MessageBox.Show($"Assessment with the title '{assessment.Title}' does not exist If you want to add it click on Add Button.");
+                        return false;
+                    }
+
+                  
+                    string updateQuery = "UPDATE Assessment SET DateCreated = @dateCreated, TotalMarks = @totalMarks, TotalWeightage = @totalWeightage " +
+                                         "WHERE Title = @title";
+                    SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
+                    updateCommand.Parameters.AddWithValue("@title", assessment.Title);
+                    updateCommand.Parameters.AddWithValue("@dateCreated", assessment.DateCreated);
+                    updateCommand.Parameters.AddWithValue("@totalMarks", assessment.TotalMarks);
+                    updateCommand.Parameters.AddWithValue("@totalWeightage", assessment.TotalWeightage);
+
+                    updateCommand.ExecuteNonQuery();
+
+                    MessageBox.Show($"Assessment '{assessment.Title}' updated successfully.");
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+        }
+        public static List<string> GetAllAssessmentTitles()
+        {
+            List<string> titles = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT Title FROM Assessment";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string title = Convert.ToString(reader["Title"]);
+                            titles.Add(title);
+                        }
+                    }
+
+                    return titles;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return titles; 
+                }
+            }
+        }
+
+        public static List<string> GetRubricDetails()
+        {
+            List<string> rubricDetails = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT Details FROM Rubric";
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string details = reader["Details"].ToString();
+                        rubricDetails.Add(details);
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return rubricDetails;
+        }
+
+        public static int GetAssessmentId(string assessmentTitle)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT Id FROM Assessment WHERE Title = @title";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@title", assessmentTitle);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Assessment not found.");
+                        return -1; 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return -1; 
+                }
+            }
+        }
+        public static int GetRubricId(string rubricdetail)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT Id FROM Rubric WHERE details = @title";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@title", rubricdetail);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Rubric not found.");
+                        return -1;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return -1; 
+                }
+            }
+        }
+
+        public static bool AddAssessmentComponent(AssessmentComponent component)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+                try
+                {
+             
+                    string checkQuery = "SELECT COUNT(*) FROM AssessmentComponent WHERE Name = @name AND RubricId = @rubricId AND AssessmentId = @assessmentId";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@name", component.Name);
+                    checkCommand.Parameters.AddWithValue("@rubricId", component.RubricId);
+                    checkCommand.Parameters.AddWithValue("@assessmentId", component.AssessmentId);
+
+                    int existingCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                    if (existingCount == 0)
+                    {
+        
+                        string insertQuery = "INSERT INTO AssessmentComponent (Name, RubricId, TotalMarks, DateCreated, DateUpdated, AssessmentId) " +
+                                             "VALUES (@name, @rubricId, @totalMarks, @dateCreated, @dateUpdated, @assessmentId)";
+                        SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
+                        insertCommand.Parameters.AddWithValue("@name", component.Name);
+                        insertCommand.Parameters.AddWithValue("@rubricId", component.RubricId);
+                        insertCommand.Parameters.AddWithValue("@totalMarks", component.TotalMarks);
+                        insertCommand.Parameters.AddWithValue("@dateCreated", component.DateCreated);
+                        insertCommand.Parameters.AddWithValue("@dateUpdated", component.DateUpdated);
+                        insertCommand.Parameters.AddWithValue("@assessmentId", component.AssessmentId);
+
+                        insertCommand.ExecuteNonQuery();
+
+                        MessageBox.Show("Assessment component added successfully.");
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Assessment component with the same name, rubricId, and assessmentId already exists.");
+                        return false;
+                    }
                 }
                 catch (Exception ex)
                 {

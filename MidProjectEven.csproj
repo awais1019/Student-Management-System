@@ -61,6 +61,7 @@
     <Compile Include="Classes\BL\StudentAttendanceDetails.cs" />
     <Compile Include="Classes\BL\Clo.cs" />
     <Compile Include="Classes\BL\StudentResult.cs" />
+    <Compile Include="Classes\DL\AssessmentDL.cs" />
     <Compile Include="Classes\DL\ClassAttandanceDL.cs" />
     <Compile Include="Classes\DL\StudentAttendanceDL.cs" />
     <Compile Include="Classes\DL\StudentDL.cs" />
@@ -81,6 +82,12 @@
     <Compile Include="UserControls\Add_Student_Control.Designer.cs">
       <DependentUpon>Add_Student_Control.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AssessmentComponents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AssessmentComponents.Designer.cs">
+      <DependentUpon>AssessmentComponents.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Attendance_Record.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +99,12 @@
     </Compile>
     <Compile Include="UserControls\Clo_Rubrics_Card.Designer.cs">
       <DependentUpon>Clo_Rubrics_Card.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MakeAssesment_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\MakeAssesment_Control.Designer.cs">
+      <DependentUpon>MakeAssesment_Control.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ManageClos_Control.cs">
       <SubType>UserControl</SubType>
@@ -139,11 +152,17 @@
     <EmbeddedResource Include="UserControls\Add_Student_Control.resx">
       <DependentUpon>Add_Student_Control.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AssessmentComponents.resx">
+      <DependentUpon>AssessmentComponents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Attendance_Record.resx">
       <DependentUpon>Attendance_Record.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Clo_Rubrics_Card.resx">
       <DependentUpon>Clo_Rubrics_Card.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\MakeAssesment_Control.resx">
+      <DependentUpon>MakeAssesment_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ManageClos_Control.resx">
       <DependentUpon>ManageClos_Control.cs</DependentUpon>

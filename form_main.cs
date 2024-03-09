@@ -60,7 +60,7 @@ namespace MidProjectEven
     
         private void Assesment_btn_Click(object sender, EventArgs e)
         {
-         
+            setMenu(new MakeAssesment_Control(), "Assessments");
         }
 
         private void btn_close_Click(object sender, EventArgs e)
@@ -110,6 +110,11 @@ namespace MidProjectEven
         private void Clo_btn_Click(object sender, EventArgs e)
         {
             setMenu(new ManageClos_Control(), "CLO Details and Rubric Management");
+        }
+
+        private void Assessment_Components_Click(object sender, EventArgs e)
+        {
+            setMenu(new AssessmentComponents(), "Assessment Components");
         }
     }
   
