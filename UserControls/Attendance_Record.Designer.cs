@@ -38,6 +38,7 @@
             this.AllTime_box = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.GridAttendance = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.report_generate_btn = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridAttendance)).BeginInit();
@@ -45,6 +46,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.report_generate_btn);
             this.panel1.Controls.Add(this.show_btn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.AllTime_box);
@@ -192,6 +194,26 @@
             this.GridAttendance.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Gray;
             this.GridAttendance.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.White;
             // 
+            // report_generate_btn
+            // 
+            this.report_generate_btn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.report_generate_btn.BorderRadius = 5;
+            this.report_generate_btn.BorderThickness = 1;
+            this.report_generate_btn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.report_generate_btn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.report_generate_btn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.report_generate_btn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.report_generate_btn.Enabled = false;
+            this.report_generate_btn.FillColor = System.Drawing.Color.White;
+            this.report_generate_btn.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.report_generate_btn.ForeColor = System.Drawing.Color.Black;
+            this.report_generate_btn.Location = new System.Drawing.Point(654, 8);
+            this.report_generate_btn.Name = "report_generate_btn";
+            this.report_generate_btn.Size = new System.Drawing.Size(180, 45);
+            this.report_generate_btn.TabIndex = 58;
+            this.report_generate_btn.Text = "Generate Report";
+            this.report_generate_btn.Click += new System.EventHandler(this.report_generate_btn_Click);
+            // 
             // Attendance_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -218,5 +240,6 @@
         private Guna.UI2.WinForms.Guna2Button show_btn;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
         private Guna.UI2.WinForms.Guna2DataGridView GridAttendance;
+        private Guna.UI2.WinForms.Guna2Button report_generate_btn;
     }
 }

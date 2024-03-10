@@ -19,6 +19,7 @@ namespace MidProjectEven.UserControls
         {
             InitializeComponent();
             FillRubricsAndAssesments();
+            FillData();
         }
 
         private void Add_btn_Click(object sender, EventArgs e)
@@ -31,7 +32,11 @@ namespace MidProjectEven.UserControls
                 if(assessmentid!=-1&&rubricid!=-1)
                 {
                   AssessmentComponent assessmentComponent = new AssessmentComponent(name, rubricid, marks, dateTime, dateTime, assessmentid);
-                  DataBase.AddAssessmentComponent(assessmentComponent);
+                  if(DataBase.AddAssessmentComponent(assessmentComponent))
+                    {
+                        ClearFields();
+                        FillData();
+                    }
                 }
 
 
@@ -87,6 +92,50 @@ namespace MidProjectEven.UserControls
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
-        /*        void ClearFields()*/
+
+        private void Edit_btn_Click(object sender, EventArgs e)
+        {
+            if(validatedata())
+            {
+                DateTime dateTime = DateTime.Now;
+                int assessmentid = DataBase.GetAssessmentId(AllAssessments_box.SelectedItem.ToString());
+                int rubricid = DataBase.GetRubricId(rubric_combo.SelectedItem.ToString());
+                if (assessmentid != -1 && rubricid != -1)
+                {
+                    AssessmentComponent assessmentComponent = new AssessmentComponent(name, rubricid, marks, dateTime, dateTime, assessmentid);
+                   if( DataBase.EditAssessmentComponent(assessmentComponent))
+                    {
+                        ClearFields();
+                        FillData();
+                    }
+                }
+            }
+        }
+        void ClearFields()
+        {
+            name_txt.Text = string.Empty;
+           total_marks.Text = string.Empty;
+        }
+        void FillData()
+        {
+            GridAssessments.DataSource = null;
+            GridAssessments.DataSource=DataBase.GetAllAssessmentComponents();
+            GridAssessments.Refresh();
+        }
+
+        private void GridAssessments_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int index = e.RowIndex;
+                DataGridViewRow row = GridAssessments.Rows[index];
+                name_txt.Text = row.Cells[0].Value.ToString();
+                total_marks.Text = row.Cells[2].Value.ToString();
+            }
+            catch (Exception s)
+            {
+                MessageBox.Show(s.Message, "Warning");
+            }
+        }
     }
 }

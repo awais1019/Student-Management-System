@@ -116,6 +116,11 @@ namespace MidProjectEven
         {
             setMenu(new AssessmentComponents(), "Assessment Components");
         }
+
+        private void Evalution_btn_Click(object sender, EventArgs e)
+        {
+            setMenu(new MarkEvalution(), "Mark Evaluation");
+        }
     }
   
 }

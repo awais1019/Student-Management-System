@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MidProjectEven.Classes.BL.Assessment" Collapsed="true">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEEAAAAAAAAAAAQAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Classes\BL\Assessment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.BL.AssessmentComponent" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAQAgCQAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Classes\BL\AssessmentComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.BL.CloRubric" Collapsed="true">
+    <Position X="1.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\BL\CloRubric.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.BL.RubricLevel" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAACAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Classes\BL\RubricLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.BL.Rubric" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAABAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Classes\BL\Rubrics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.BL.StudentAttendanceWithDetails" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\BL\StudentAttendanceDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.BL.StudentResult" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAGAAA=</HashCode>
+      <FileName>Classes\BL\StudentResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.ClassAttendance" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\BL\ClassAttendance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.Clo" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Classes\BL\Clo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.Student" Collapsed="true">
+    <Position X="1.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAEACAAAAAACAAAAAAAAAAAAEAAAAAAAAAAAAg=</HashCode>
+      <FileName>Classes\BL\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.StudentAttendance" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAACAAA=</HashCode>
+      <FileName>Classes\BL\StudentAttendance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.Classes.Validations" Collapsed="true">
+    <Position X="1.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAEAAAAAABAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Classes\BL\Validations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MidProjectEven.DataBase" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAgGABADw0BgIBBABAAgAARAACgCCx4sAIEAgQQIAI=</HashCode>
+      <FileName>Classes\BL\DataBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

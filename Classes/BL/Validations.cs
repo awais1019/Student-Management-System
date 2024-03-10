@@ -17,7 +17,7 @@ namespace MidProjectEven.Classes
         public static bool ValidEmail(string email)
         {
            
-            string pattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+            string pattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,4}$";
             Regex regex = new Regex(pattern);
 
             return !string.IsNullOrEmpty(email) && regex.IsMatch(email);
@@ -29,7 +29,7 @@ namespace MidProjectEven.Classes
         }
         public static bool ValidRegistrationNumber(string regNumber)
         {
-            string pattern = @"^\d{4}-[a-zA-Z]{2,}-\d{3,}$";
+            string pattern = @"^\d{4}-[a-zA-Z]{2,}-\d{1,}$";
             Regex regex = new Regex(pattern);
             return !string.IsNullOrEmpty(regNumber) && regex.IsMatch(regNumber);
         }

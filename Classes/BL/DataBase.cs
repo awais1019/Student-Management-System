@@ -198,8 +198,35 @@ namespace MidProjectEven
                 }
             }
         }
+        public static string GetStatusName(int statusId)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                try
+                {
+                    string query = "SELECT Name FROM Lookup WHERE LookupId = @id AND Category = 'ATTENDANCE_STATUS'";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@id", statusId);
 
-      public static  List<Student> LoadActiveStudents()
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result == null)
+                    {
+                        return null;
+                    }
+
+                    return result.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return  null;
+                }
+            }
+        }
+
+        public static  List<Student> LoadActiveStudents()
         {
             List<Student> studentsWithStatus5 = new List<Student>();
 
@@ -327,37 +354,7 @@ namespace MidProjectEven
 
             return -1;
         }
-        public static Dictionary<int, int> GetStudentAttendanceStatus(int attendanceId)
-        {
-            Dictionary<int, int> studentAttendanceStatus = new Dictionary<int, int>();
-
-            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
-            {
-                connection.Open();
-
-                try
-                {
-                    string query = "SELECT StudentId, AttendanceStatus FROM StudentAttendance WHERE ClassAttendanceId = @attendanceId";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@attendanceId", attendanceId);
-
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        int studentId = Convert.ToInt32(reader["StudentId"]);
-                        int attendanceStatus = Convert.ToInt32(reader["AttendanceStatus"]);
-
-                        studentAttendanceStatus.Add(studentId, attendanceStatus);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-            return studentAttendanceStatus;
-        }
+     
         public static List<StudentAttendanceWithDetails> GetAttendanceDetails(int attendanceId)
         {
             List<StudentAttendanceWithDetails> details = new List<StudentAttendanceWithDetails>();
@@ -486,6 +483,40 @@ namespace MidProjectEven
                 return false;
             }
         }
+        public static List<string> GetStudentNamesByStatus(int status = 5)
+        {
+            List<string> studentNames = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "SELECT CONCAT(FirstName, ' ', LastName) AS StudentName FROM Student WHERE Status = @status";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@status", status);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string studentName = reader["StudentName"].ToString();
+                        studentNames.Add(studentName);
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return studentNames;
+        }
+
+
         public static bool EditStudent(string oldRegistrationNumber, Student newStudent)
         {
             using (SqlConnection connection = new SqlConnection(DataBase.SqlConnectionString))
@@ -1171,6 +1202,260 @@ namespace MidProjectEven
                 {
                     MessageBox.Show(ex.Message);
                     return false;
+                }
+            }
+        }
+        public static bool EditAssessmentComponent(AssessmentComponent component)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+                try
+                {
+              
+                    string checkQuery = "SELECT COUNT(*) FROM AssessmentComponent WHERE Name = @name AND RubricId = @rubricId AND AssessmentId = @assessmentId";
+                    SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+                    checkCommand.Parameters.AddWithValue("@name", component.Name);
+                    checkCommand.Parameters.AddWithValue("@rubricId", component.RubricId);
+                    checkCommand.Parameters.AddWithValue("@assessmentId", component.AssessmentId);
+
+                    int existingCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                    if (existingCount > 0)
+                    {
+                     
+                        string updateQuery = "UPDATE AssessmentComponent SET TotalMarks = @totalMarks, DateUpdated = @dateUpdated " +
+                                             "WHERE Name = @name AND RubricId = @rubricId AND AssessmentId = @assessmentId";
+                        SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
+                        updateCommand.Parameters.AddWithValue("@totalMarks", component.TotalMarks);
+                        updateCommand.Parameters.AddWithValue("@dateUpdated", component.DateUpdated);
+                        updateCommand.Parameters.AddWithValue("@name", component.Name);
+                        updateCommand.Parameters.AddWithValue("@rubricId", component.RubricId);
+                        updateCommand.Parameters.AddWithValue("@assessmentId", component.AssessmentId);
+
+                        updateCommand.ExecuteNonQuery();
+
+                        MessageBox.Show("Assessment component updated successfully.");
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Assessment component with the specified name, rubricId, and assessmentId does not exist.");
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+        }
+        public static List<AssessmentComponent> GetAllAssessmentComponents()
+        {
+            List<AssessmentComponent> assessmentComponents = new List<AssessmentComponent>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT * FROM AssessmentComponent";
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string name = reader["Name"].ToString();
+                        int rubricId = Convert.ToInt32(reader["RubricId"]);
+                        int totalMarks = Convert.ToInt32(reader["TotalMarks"]);
+                        DateTime dateCreated = Convert.ToDateTime(reader["DateCreated"]);
+                        DateTime dateUpdated = Convert.ToDateTime(reader["DateUpdated"]);
+                        int assessmentId = Convert.ToInt32(reader["AssessmentId"]);
+
+                        AssessmentComponent assessmentComponent = new AssessmentComponent(name, rubricId, totalMarks, dateCreated, dateUpdated, assessmentId);
+                        assessmentComponents.Add(assessmentComponent);
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return assessmentComponents;
+        }
+        public static List<string> GetAllAssessmentComponentNames()
+        {
+            List<string> assessmentComponentNames = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT Name FROM AssessmentComponent";
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string name = reader["Name"].ToString();
+                        assessmentComponentNames.Add(name);
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return assessmentComponentNames;
+        }
+        public static List<string> GetAllRubricDetails()
+        {
+            List<string> rubricDetailsList = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    string query = "SELECT Details FROM RubricLevel";
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string details = reader["Details"].ToString();
+                        rubricDetailsList.Add(details);
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return rubricDetailsList;
+        }
+
+        public static int GetStudentId2(string studentName)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "SELECT StudentId FROM Student WHERE CONCAT(FirstName, ' ', LastName) = @studentName";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@studentName", studentName);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return -1; 
+        }
+
+        public static int GetComponentId(string componentName)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "SELECT ComponentId FROM AssessmentComponent WHERE Name = @componentName";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@componentName", componentName);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return -1;
+        }
+        public static int GetRubricLevelId(string rubricDetail)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "SELECT Id FROM RubricLevel WHERE Details = @rubricDetail";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@rubricDetail", rubricDetail);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return -1;
+        }
+        public static void AddStudentResult(StudentResult studentResult)
+        {
+            using (SqlConnection connection = new SqlConnection(SqlConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "INSERT INTO StudentResult (StudentId, ComponentId, RubricLevelId, Date) " +
+                                   "VALUES (@studentId, @componentId, @rubricLevelId, @date)";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@studentId", studentResult.StudentId);
+                    command.Parameters.AddWithValue("@componentId", studentResult.AssessmentComponentId);
+                    command.Parameters.AddWithValue("@rubricLevelId", studentResult.RubricMeasurementId);
+                    command.Parameters.AddWithValue("@date", studentResult.EvaluationDate);
+
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
